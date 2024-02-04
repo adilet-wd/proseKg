@@ -1,0 +1,134 @@
+@import '../../styles/color-variables.scss';
+@import '../../styles/breakpoint.scss';
+.login {
+    &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: $colorTextWhite;
+    }
+    &-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-title {
+            color: $colorTextDark;
+            font-size: 30px;
+        }
+        margin-bottom: 30px;
+    }
+    &-component {
+        max-width: 400px;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 1rem;
+        background-color: $colorPurple;
+        overflow: hidden;
+    }
+    &-form-wrapper {
+        padding: 40px 40px 10px 40px;
+        @media (max-width: $media-width-sm) {
+            padding: 15px;
+        }
+    }
+    &__button {
+        margin-top: 46px;
+        width: 100%;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        font-size: 1.4rem;
+        line-height: 1.1428;
+        font-weight: 600;
+        border: none; 
+        padding: 15px 32px;
+        color: $colorTextWhite; 
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: #0056b3; 
+
+        }
+    }
+    &__form {
+        margin-bottom: 35px;
+    }
+    &-options {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__remember-me {
+            font-size: 14px;
+            input {
+                width: 14px;
+                height: 14px;
+            }
+        }
+        &__forgot-password {
+            color: #0056b3;
+            font-size: 13px;
+        }
+    }
+    &-social {
+        &__separator {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            height: 4rem;
+            justify-content: center;
+            margin: -1.5rem 0 2rem;
+            & > :first-child, & > :last-child {
+                background-color: $colorMain;
+                flex-grow: 1;
+                height: 1px;
+            }
+            &-text {
+                padding: 0 2rem;
+            }
+        }
+        &-component {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        &-options {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        &-button {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-radius: 5px;
+            height: 50px;
+            width: 100%;
+            transition: filter 0.3s ease;
+            .login-social-icon {
+                img {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            &.-google {
+                background-color: $colorWhite;
+                border: none;
+                color: $colorTextDark;
+                &:hover {
+                    color: $colorTextDark;
+                    border: none;  
+                    background-color: $colorWhite;
+                    filter: brightness(0.9);
+                }
+            }   
+        }
+        
+        
+    }
+}
