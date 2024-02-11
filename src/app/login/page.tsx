@@ -5,7 +5,7 @@ import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { ReactSVG } from "react-svg";
 import Image from 'next/image';
 
-import googleIcon from "../../assets/images/google-icon.svg";
+import googleIcon from "../../assets/icons/google-icon.svg";
 
 
 export default function Login() {

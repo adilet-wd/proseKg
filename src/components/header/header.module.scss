@@ -1,7 +1,6 @@
 @import "../../styles/color-variables.scss";
 .header {
     font-family: 'Montserrat', sans-serif;   
-    
 }
 .logo {
     width: 100px;
@@ -45,13 +44,14 @@
     padding: 0;
 }
 .navbar {
+    background-color: $colorWhite;
     font-size: 16px;
     &-nav {
         --bs-nav-link-color: $colorMain; 
-        color: $colorTextGray;
+        color: $colorTextBrown;
     };
     &-brand {
-        color: $colorTextGray;
+        color: $colorTextBrown;
         display: flex;
         align-items: center;
     };
@@ -59,14 +59,18 @@
         justify-content: space-between;
         flex-grow: 0;
     };
-    a:hover {
-        color: $colorTextGray;
-    } 
     a {
         text-align: center;
-        color: $colorTextGray;
+        color: $colorTextBrown;
         text-decoration: none;
+        &:hover{
+            color: $colorTextBrown;
+        }
+        &:focus {
+            color: $colorTextBrown;
+        }
     }
+    
 }
 .nav-link {
     &.btn:active,

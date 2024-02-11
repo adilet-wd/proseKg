@@ -11,7 +11,7 @@ export default function HeaderDesktop() {
   return (
     <>
             <header className="header header-desktop">
-                <div className="nav-placeholder"></div>
+                
                 <Navbar fixed="top" collapseOnSelect expand="md" >
                     <Container>
                         {/* Лого */}
@@ -21,7 +21,7 @@ export default function HeaderDesktop() {
                         
                         <Nav className='mr-auto'>
                             <Link href="/" className="nav-link">Главная</Link>
-                            <Link href="/tournaments" className="nav-link">Турниры</Link>
+                            <Link href="/colors" className="nav-link">Цвета</Link>
                             <Link href="#" className={`${styles.button} nav-link`}>Зарегистрироваться</Link>
                             <Link href="/login" className={`${styles.button} nav-link`}>Войти</Link>
                         </Nav>

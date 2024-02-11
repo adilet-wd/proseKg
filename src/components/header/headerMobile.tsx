@@ -13,7 +13,6 @@ export default function HeaderMobile() {
     return (
     <>
             <header className="header header-mobile" >
-                <div className="nav-placeholder"></div>
                 <Navbar fixed="top" collapseOnSelect expand="md" >
                     <Container className="header-container">
                         <Navbar.Brand className={`${styles.logo, styles.logoMobile} `} href="/">
@@ -33,7 +32,7 @@ export default function HeaderMobile() {
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <Link onClick={closeCanvas} href="/" className="nav-link">Главная</Link>
-                                <Link onClick={closeCanvas} href="/tournaments" className="nav-link">Турниры</Link>
+                                <Link onClick={closeCanvas} href="/colors" className="nav-link">Цвета</Link>
                                 <Link onClick={closeCanvas} href="/register" className={`${styles.button} nav-link`}>Зарегистрироваться</Link>
                                 <Link onClick={closeCanvas} href="/login" className={`${styles.button} nav-link`}>Войти</Link>
                             </Nav>
