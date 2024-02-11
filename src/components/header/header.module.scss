@@ -10,13 +10,13 @@
     margin-left: 10px;
 }
 
-.enterButtons {
+.header-mobile__links {
     display: flex;
     gap: 10px;
     order: 3;
     color: $colorTextGray;
     margin-left: auto;
-    .button-register {
+    .button-login {
         @media (max-width: 440px) {
             display: none;
         }
@@ -47,11 +47,9 @@
     background-color: $colorWhite;
     font-size: 16px;
     &-nav {
-        --bs-nav-link-color: $colorMain; 
-        color: $colorTextBrown;
+        color: $colorTextDark;
     };
     &-brand {
-        color: $colorTextBrown;
         display: flex;
         align-items: center;
     };
@@ -61,13 +59,13 @@
     };
     a {
         text-align: center;
-        color: $colorTextBrown;
+        color: $colorTextDark;
         text-decoration: none;
         &:hover{
-            color: $colorTextBrown;
+            color: $colorTextDark;
         }
         &:focus {
-            color: $colorTextBrown;
+            color: $colorTextDark;
         }
     }
     

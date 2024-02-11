@@ -18,8 +18,8 @@ export default function HeaderMobile() {
                         <Navbar.Brand className={`${styles.logo, styles.logoMobile} `} href="/">
                             ProseKg
                         </Navbar.Brand>
-                        <div className="enterButtons">
-                            <Link href="/register" className={`${styles.button} button-register nav-link`}>Зарегистрироваться</Link>
+                        <div className="header-mobile__links">
+                            <Link href="/register" className={`${styles.button} library nav-link`}>Библиотека</Link>
                             <Link href="/login" className={`${styles.button} button-login nav-link`}>Войти</Link>
                         </div>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
@@ -32,7 +32,7 @@ export default function HeaderMobile() {
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <Link onClick={closeCanvas} href="/" className="nav-link">Главная</Link>
-                                <Link onClick={closeCanvas} href="/colors" className="nav-link">Цвета</Link>
+                                <Link onClick={closeCanvas} href="/library" className="nav-link">Библиотека</Link>
                                 <Link onClick={closeCanvas} href="/register" className={`${styles.button} nav-link`}>Зарегистрироваться</Link>
                                 <Link onClick={closeCanvas} href="/login" className={`${styles.button} nav-link`}>Войти</Link>
                             </Nav>

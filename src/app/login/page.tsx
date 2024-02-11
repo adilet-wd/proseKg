@@ -1,19 +1,44 @@
 'use client'
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { ReactSVG } from "react-svg";
 import Image from 'next/image';
 
 import googleIcon from "../../assets/icons/google-icon.svg";
-
+import unlockedPassword from "../../assets/icons/unlock-password.svg";
+import lockedPassword from "../../assets/icons/lock-password.svg";
 
 export default function Login() {
+    const passwordInputRef = useRef<HTMLInputElement>(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordType, setpasswordType] = useState('password');
+    const [passwordIcon, setPasswordIcon] = useState(lockedPassword);
     // const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const toggleVisibility = () => {
+        if (passwordInputRef.current) {
+            if (passwordType === "password") {
+                setpasswordType("text");
+                setPasswordIcon(unlockedPassword);
+            } else {
+                console.log("Нажатие")
+                setpasswordType("password");
+                setPasswordIcon(lockedPassword);
+            }
+        }
+    };
+
+    useEffect(() => {
+        if (passwordInputRef.current && passwordInputRef.current.type === "text") {
+            setPasswordIcon(unlockedPassword);
+        } else if (passwordInputRef.current && passwordInputRef.current.type === "password") {
+            setPasswordIcon(lockedPassword);
+        }
+    }, [passwordInputRef.current?.type]);
+
+    function handleSubmit (e: React.FormEvent<HTMLFormElement>){
         const form = e.currentTarget;
         e.preventDefault();
         console.log(e)
@@ -31,7 +56,7 @@ export default function Login() {
     return (
             <Container className="login-container">
                 <header className="login-header">
-                <h1 className="login-header-title"><Link href="/">ProseKg</Link></h1>
+                <h1 className="login-header-title"><Link href="/">ProseKG</Link></h1>
                 </header>
                 <main className="login-component">
                     <div className="login-form-wrapper">
@@ -45,17 +70,19 @@ export default function Login() {
                                     autoFocus
                                 />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="validationUserName">
+                            <Form.Group className="mb-3 login__password" controlId="validationUserName">
                                 <Form.Control className="login__input"
                                     required
-                                    type="password"
+                                    ref={passwordInputRef}
+                                    type={passwordType}
                                     name="password"
                                     placeholder="Пароль"
                                 />
+                                <Image className="login__password-logo" onClick={toggleVisibility} src={passwordIcon} alt="" />
                             </Form.Group>
                             <div className="login-options">
                                 <Form.Check className="login-options__remember-me" type={'checkbox'} id={`default-checkbox`} label={`Запомнить меня`}/>
-                                <Link className="login-options__forgot-password" href="/#">Забыли пароль?</Link>
+                                <Link className="login-options__forgot-password" href="#">Забыли пароль?</Link>
                             </div>
                             <Button className="login__button"type="submit">Войти</Button>
                         </Form>
@@ -82,3 +109,5 @@ export default function Login() {
             </Container>
     );
 }
+
+

@@ -6,8 +6,8 @@ import "./globals.scss";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ColGame",
-  description: "Made by Usenkanov Adilet",
+  title: "ProseKG",
+  description: "Made by AlaToo team",
 };
 
 export default function RootLayout({
