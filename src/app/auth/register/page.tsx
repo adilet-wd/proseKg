@@ -105,7 +105,7 @@ export default function RegisterPage() {
                                         placeholder="Имя"
                                     />
                             </Form.Group>
-                            <Form.Group className="mb-3 register__surname" controlId="validationUsername">
+                            <Form.Group className="mb-3 register__surname" controlId="validationSurname">
                                 <Form.Control className="register__input"
                                         required
                                         type="text"
