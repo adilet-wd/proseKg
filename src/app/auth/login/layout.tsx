@@ -8,13 +8,9 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
     return (
         <div>
-           <Header></Header>
             <main>
                 {children}
             </main>
-            <footer>
-                {/* Your footer content */}
-            </footer>
         </div>
     );
 };

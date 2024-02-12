@@ -1,23 +1,60 @@
 'use client'
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { ReactSVG } from "react-svg";
 import Image from 'next/image';
 
-import googleIcon from "../../assets/icons/google-icon.svg";
-import unlockedPassword from "../../assets/icons/unlock-password.svg";
-import lockedPassword from "../../assets/icons/lock-password.svg";
 
-export default function Login() {
+import googleIcon from "../../../assets/icons/google-icon.svg";
+import unlockedPassword from "../../../assets/icons/unlock-password.svg";
+import lockedPassword from "../../../assets/icons/lock-password.svg";
+import LoadingScreen from "@/components/loadingScreen/loadingScreen";
+import { AuthContext } from "../authContext";
+import { useRouter } from "next/navigation";
+
+
+export default function LoginPage() {
     const passwordInputRef = useRef<HTMLInputElement>(null);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [passwordType, setpasswordType] = useState('password');
     const [passwordIcon, setPasswordIcon] = useState(lockedPassword);
-    // const [validated, setValidated] = useState(false);
+    const authContext = useContext(AuthContext);
+    const { isAuthenticated, setIsAuthenticated } = authContext || {};
+    const [isClient, setIsClient] = useState(false);
+    const router = useRouter();
+    
+    function login() {
+        if (setIsAuthenticated) {
+            setIsAuthenticated(true);
+            router.push(`/myProfile`);
+        }
+    }
+    // Изменение видимости пароля
+    useEffect(() => {
+        if (passwordInputRef.current && passwordInputRef.current.type === "text") {
+            setPasswordIcon(unlockedPassword);
+        } else if (passwordInputRef.current && passwordInputRef.current.type === "password") {
+            setPasswordIcon(lockedPassword);
+        }
+    }, [passwordInputRef.current?.type]);
 
-    const toggleVisibility = () => {
+    // Проверка на клиента
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return (
+        <main>
+            <Container>
+            <LoadingScreen></LoadingScreen>
+            </Container>
+        </main>
+        
+        );
+    }
+
+    function toggleVisibility() {
         if (passwordInputRef.current) {
             if (passwordType === "password") {
                 setpasswordType("text");
@@ -30,18 +67,11 @@ export default function Login() {
         }
     };
 
-    useEffect(() => {
-        if (passwordInputRef.current && passwordInputRef.current.type === "text") {
-            setPasswordIcon(unlockedPassword);
-        } else if (passwordInputRef.current && passwordInputRef.current.type === "password") {
-            setPasswordIcon(lockedPassword);
-        }
-    }, [passwordInputRef.current?.type]);
-
     function handleSubmit (e: React.FormEvent<HTMLFormElement>){
         const form = e.currentTarget;
         e.preventDefault();
-        console.log(e)
+        login();
+        // console.log(e)
         // if (form.checkValidity() === false) {
         //     event.preventDefault();
         //     event.stopPropagation();
@@ -70,7 +100,7 @@ export default function Login() {
                                     autoFocus
                                 />
                             </Form.Group>
-                            <Form.Group className="mb-3 login__password" controlId="validationUserName">
+                            <Form.Group className="mb-3 login__password" controlId="validationPassword">
                                 <Form.Control className="login__input"
                                     required
                                     ref={passwordInputRef}
@@ -86,7 +116,7 @@ export default function Login() {
                             </div>
                             <Button className="login__button"type="submit">Войти</Button>
                         </Form>
-                        <div className="login-social-component">
+                        {/* <div className="login-social-component">
                             <div className="login-social__separator">
                                 <div></div>
                                 <div className="login-social__separator-text">Или</div>
@@ -101,9 +131,8 @@ export default function Login() {
                                     <div></div>
                                 </Button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
-                    <h4 className="login-signup"></h4>
                 </main>
                 
             </Container>

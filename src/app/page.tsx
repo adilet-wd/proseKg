@@ -8,7 +8,6 @@ export default function Home() {
       <div className="nav-placeholder"></div>
       <Header></Header>
       <main className={styles.main}>
-      
       </main>
     </>
     
