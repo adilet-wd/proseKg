@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { ReactSVG } from "react-svg";
 import Image from 'next/image';
@@ -9,6 +9,8 @@ import googleIcon from "../../../assets/icons/google-icon.svg";
 import unlockedPassword from "../../../assets/icons/unlock-password.svg";
 import lockedPassword from "../../../assets/icons/lock-password.svg";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "../authContext";
 
 interface RegisterData {
     username: string;
@@ -22,7 +24,11 @@ export default function RegisterPage() {
     const passwordInputRef = useRef<HTMLInputElement>(null);
     const [passwordType, setpasswordType] = useState('password');
     const [passwordIcon, setPasswordIcon] = useState(lockedPassword);
-
+    const authContext = useContext(AuthContext);
+    const { isAuthenticated, setIsAuthenticated } = authContext || {};
+    const router = useRouter();
+    
+    // Изменение видимости пароля
     useEffect(() => {
         if (passwordInputRef.current && passwordInputRef.current.type === "text") {
             setPasswordIcon(unlockedPassword);
@@ -30,6 +36,13 @@ export default function RegisterPage() {
             setPasswordIcon(lockedPassword);
         }
     }, [passwordInputRef.current?.type]);
+
+    // Редирект на страницу Профиля, если пользователь уже вошел
+    useEffect(() => {
+        if (isAuthenticated) {
+          router.push('/myProfile'); 
+        }
+    }, [isAuthenticated]);
 
     // Переключение видимости инпута пароля
     function toggleVisibility(){

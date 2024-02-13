@@ -6,8 +6,8 @@ import { ReactSVG } from "react-svg";
 import Image from 'next/image';
 
 
-import unlockedPassword from "@assets/icons/unlock-password.svg";
-import lockedPassword from "@assets/icons/lock-password.svg";
+import unlockedPassword from "../../../assets/icons/unlock-password.svg";
+import lockedPassword from "../../../assets/icons/lock-password.svg";
 import LoadingScreen from "@/components/loadingScreen/loadingScreen";
 import { AuthContext } from "../authContext";
 import { useRouter } from "next/navigation";
@@ -28,6 +28,7 @@ export default function LoginPage() {
             router.push(`/myProfile`);
         }
     }
+
     // Изменение видимости пароля
     useEffect(() => {
         if (passwordInputRef.current && passwordInputRef.current.type === "text") {
@@ -41,17 +42,13 @@ export default function LoginPage() {
     useEffect(() => {
         setIsClient(true);
     }, []);
-
-    if (!isClient) {
-        return (
-        <main>
-            <Container>
-            <LoadingScreen></LoadingScreen>
-            </Container>
-        </main>
-        
-        );
-    }
+    
+    // Редирект на страницу Профиля, если пользователь уже вошел
+    useEffect(() => {
+        if (isAuthenticated) {
+          router.push('/myProfile'); 
+        }
+    }, [isAuthenticated]);
 
     function toggleVisibility() {
         if (passwordInputRef.current) {
@@ -81,6 +78,17 @@ export default function LoginPage() {
         // }
         // setValidated(true);
     };
+
+    if (!isClient) {
+        return (
+        <main>
+            <Container>
+            <LoadingScreen></LoadingScreen>
+            </Container>
+        </main>
+        
+        );
+    }
 
     return (
             <Container className="login-container">

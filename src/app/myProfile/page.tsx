@@ -4,13 +4,28 @@ import styles from "./page.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/authContext";
 import LoadingScreen from "@/components/loadingScreen/loadingScreen";
+import { useRouter } from "next/navigation";
+
 
 
 export default function MyProfile() {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  // Проверка на клиента
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   
+  // Редирект на страницу Профиля, если пользователь уже вошел
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/'); 
+    }
+}, [isAuthenticated]);
+
   function login() {
     if (setIsAuthenticated) {
       setIsAuthenticated(true);
@@ -23,10 +38,6 @@ export default function MyProfile() {
     }
   }
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   if (!isClient) {
     return (
       <main>
@@ -35,7 +46,7 @@ export default function MyProfile() {
         </Container>
       </main>
     
-    ); // или другой "нейтральный" контент
+    );
   }
 
   return (

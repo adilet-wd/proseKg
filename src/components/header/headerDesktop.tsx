@@ -46,8 +46,8 @@ export default function HeaderDesktop() {
 
 
         </>
-  );
-}
+    );
+  }
 
 // Helper functions
 function getExclamationMarks(numChars: number) {
