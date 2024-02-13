@@ -7,7 +7,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
     return (
-        <div>
+        <>
             <div className="nav-placeholder"></div>
            <Header></Header>
             <main>
@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
             <footer>
                 {/* Your footer content */}
             </footer>
-        </div>
+        </>
     );
 };
 

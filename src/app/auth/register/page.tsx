@@ -2,10 +2,8 @@
 import Link from "next/link";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Button, Container, Form, InputGroup } from "react-bootstrap";
-import { ReactSVG } from "react-svg";
 import Image from 'next/image';
 
-import googleIcon from "../../../assets/icons/google-icon.svg";
 import unlockedPassword from "../../../assets/icons/unlock-password.svg";
 import lockedPassword from "../../../assets/icons/lock-password.svg";
 import axios from "axios";
@@ -60,16 +58,18 @@ export default function RegisterPage() {
     };
 
     // Задержка отправки формы регистрации
-    function handleSubmit (event: React.FormEvent<HTMLFormElement>){
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        const dataToSubmit = {
+        const dataToSubmit: RegisterData = {
             username: formData.get("username") as string,
             email: formData.get("email") as string,
-            password: formData.get("password") as string
-        }
+            password: formData.get("password") as string,
+            name: formData.get("name") as string, 
+            passwordRepeat: formData.get("passwordRepeat") as string, 
+        };
         registerRequest(dataToSubmit);
-    };
+    }
 
     // POST запрос, регистрация.
     async function registerRequest(data: RegisterData) {

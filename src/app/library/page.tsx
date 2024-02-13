@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap'
 import { AuthContext } from '../auth/authContext';
 import axios from 'axios';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Book {
   pic: string;
@@ -130,7 +131,7 @@ export default function Library() {
       <ul> 
         {books.length != 0 ? books.map((book, index) => {
           return <li key={index}>
-            <h3>Название: {book.name}</h3>
+            <h3><Link href={`/books/${book.link}`}> Название: {book.name}</Link></h3>
             <Image src={book.pic} alt={book.name} width={200} height={200} />
             <div>Описание: {book.short}</div>
             <div>Автор: {book.author.fullname}</div>
