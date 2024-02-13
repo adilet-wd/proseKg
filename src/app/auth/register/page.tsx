@@ -14,9 +14,10 @@ import { AuthContext } from "../authContext";
 
 interface RegisterData {
     username: string;
-    // name: string;
+    name: string;
     // surname: string;
     password: string;
+    passwordRepeat: string;
     email: string;
   }
 
@@ -42,7 +43,7 @@ export default function RegisterPage() {
         if (isAuthenticated) {
           router.push('/myProfile'); 
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, router]);
 
     // Переключение видимости инпута пароля
     function toggleVisibility(){
@@ -73,14 +74,14 @@ export default function RegisterPage() {
     // POST запрос, регистрация.
     async function registerRequest(data: RegisterData) {
         try {
-            const res = await axios.post(`${process.env.API_ROUTE}/auth/register/`, data);
+            const res = await axios.post(`${process.env.API_ROUTE}/regauth/register/`, data);
             console.log(res.data);
             return res.data;
         } catch(error) {
             if ((error as any)?.response?.status === 400) {
                 console.log((error as any).response.data);
             } else {
-                console.log(error);
+                console.log(`Ошибка`, error);
             }
         }
     }

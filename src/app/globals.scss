@@ -1,4 +1,8 @@
-@import "../styles/index.scss";
+@import "../app/auth/login/page.module.scss";
+@import "../app/auth/register/page.module.scss";
+@import "../app/library/page.module.scss";
+@import "../components/header/header.module.scss";
+@import "../components/loadingScreen/loadingScreen.module.scss";
 @import "../styles/color-variables.scss";
 :root {
 }
