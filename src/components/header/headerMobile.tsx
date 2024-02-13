@@ -6,6 +6,9 @@ import Link from 'next/link';
 import LoadingScreen from '../loadingScreen/loadingScreen';
 import { AuthContext } from '@/app/auth/authContext';
 import { useContext } from 'react';
+import Image from 'next/image';
+
+import myProfileIcon from '@/assets/icons/my-profile.svg'
 
 
 export default function HeaderMobile() {
@@ -34,7 +37,6 @@ export default function HeaderMobile() {
                         </Navbar.Brand>
                         <div className="header-mobile__links">
                             <Link href="/library" className={`${styles.button} library nav-link`}>Библиотека</Link>
-                            {isAuthenticated ? <Link href="/myProfile" className="nav-link">Личный кабинет</Link> : <Link href="/auth/login" className={`${styles.button} button-login nav-link`}>Войти</Link>}
                         </div>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
                         <Navbar.Offcanvas id={`offcanvasNavbar-expand-md`} aria-labelledby={`offcanvasNavbarLabel-expand-md`} placement="start">

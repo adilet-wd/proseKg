@@ -16,6 +16,7 @@
     order: 3;
     color: $colorTextGray;
     margin-left: auto;
+    align-items: center;
     .button-login {
         @media (max-width: 440px) {
             display: none;
@@ -23,6 +24,10 @@
     }
 }
 
+.header-mobile__profile {
+    width: 25px;
+    height: 25px;
+}
 .navbar-toggler {
     order: 1;
     transition: none;

@@ -6,9 +6,8 @@ import { ReactSVG } from "react-svg";
 import Image from 'next/image';
 
 
-import googleIcon from "../../../assets/icons/google-icon.svg";
-import unlockedPassword from "../../../assets/icons/unlock-password.svg";
-import lockedPassword from "../../../assets/icons/lock-password.svg";
+import unlockedPassword from "@assets/icons/unlock-password.svg";
+import lockedPassword from "@assets/icons/lock-password.svg";
 import LoadingScreen from "@/components/loadingScreen/loadingScreen";
 import { AuthContext } from "../authContext";
 import { useRouter } from "next/navigation";

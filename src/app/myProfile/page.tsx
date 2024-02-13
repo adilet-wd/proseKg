@@ -6,7 +6,6 @@ import { AuthContext } from "../auth/authContext";
 import LoadingScreen from "@/components/loadingScreen/loadingScreen";
 
 
-
 export default function MyProfile() {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
