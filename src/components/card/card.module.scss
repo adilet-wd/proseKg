@@ -1,5 +1,14 @@
 .cardBlock {
   width: 10vmax;
+  height: 20vmax;
+  display: flex;
+  flex-direction: column;
+  &_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
   &_info-btn {
     display: flex;
     justify-content: space-evenly;
@@ -20,8 +29,8 @@
     justify-content: space-between;
   }
   &_img {
-    width: 100%;
-    height: auto;
+    width: 10vmax;
+    height: 16vmax;
   }
   &_info-bookmark {
     width: 2rem;
