@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
 import Library from "./library/page";
 import FirstSection from "@/components/firstSection/firstSection";
 import SecondSection from "@/components/secondSection/secondSection";
@@ -90,6 +91,7 @@ export default function Home() {
         <CardList books={books}></CardList>
       </div>
       <SecondSection />
+      <Footer />
     </Container>
   );
 }

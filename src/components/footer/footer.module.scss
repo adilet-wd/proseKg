@@ -1,0 +1,27 @@
+.footer {
+  margin-top: 100px;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  background-color: #fef7e8;
+  &_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0rem;
+    &-info {
+      width: 30%;
+    }
+    &-nav {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .footer_block-info {
+    display: none;
+  }
+}
