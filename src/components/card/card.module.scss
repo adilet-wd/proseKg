@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 50%;
     & > a {
       text-decoration: none;
     }
@@ -32,8 +32,11 @@
     justify-content: space-between;
   }
   &_img {
-    width: 10vmax;
-    height: 16vmax;
+    width: 100%;
+    height: 100%;
+  }
+  &_imgBlock {
+    height: 50%;
   }
   &_info-bookmark {
     width: 2rem;

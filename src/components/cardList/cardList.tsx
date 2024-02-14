@@ -39,11 +39,10 @@ interface Genre {
 }
 
 export default function CardList({ books }: CardListProps) {
-
   return (
     <>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={7}
         spaceBetween={30}
         freeMode={true}
         modules={[FreeMode]}

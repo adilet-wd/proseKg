@@ -35,13 +35,9 @@ interface Genre {
 export default function card({ book }: { book: Book }) {
   return (
     <div className="cardBlock">
-      <Image
-        src={book.pic}
-        alt="error"
-        className="cardBlock_img"
-        width={200}
-        height={200}
-      />
+      <div className="cardBlock_imgBlock">
+        <img src={book.pic} alt="error" className="cardBlock_img" />
+      </div>
       <div className="cardBlock_info">
         <div>
           <div className="cardBlock_info-options">
