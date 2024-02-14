@@ -4,6 +4,7 @@ import Image from "next/image";
 import playicon from "../../assets/icons/play.svg";
 import bookmark from "../../assets/icons/Bookmark.svg";
 import bookmarkfill from "../../assets/icons/Bookmark_fill.svg";
+import Link from "next/link";
 
 interface Book {
   pic: string;
@@ -46,7 +47,7 @@ export default function card({book}: {book: Book}) {
           />
         </div>
         <div className="cardBlock_info-btn">
-          Слушать
+          <Link href={`/books/${book.link}`}>Слушать</Link>
           <Image src={playicon} alt="error" />
         </div>
       </div>
