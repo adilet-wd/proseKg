@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    API_ROUTE: 'http://217.151.230.35:999/api/v1',
+    API_ROUTE: 'http://26.78.236.231:8000/api/v1',
   },
   images: {
     remotePatterns: [

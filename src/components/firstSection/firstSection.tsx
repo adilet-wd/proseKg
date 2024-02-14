@@ -6,9 +6,9 @@ import Image from "next/image";
 export default function firstSection() {
   return (
     <div>
-      <div className="firstBlock">
-        <Image src={readingbook} alt="error" className="firstBlock_img" />
-        <div className="firstBlock_info">
+      <div className={"firstBlock"}>
+        <Image src={readingbook} alt="error" className={"firstBlock_img"} />
+        <div className={"firstBlock_info"}>
           <h1>
             <strong>
               Читайте или слушайте свои любимые книги на Кыргызском языке!
@@ -21,7 +21,7 @@ export default function firstSection() {
             аудиокниги, погружаясь в увлекательные истории прямо через наш
             веб-браузер.
           </p>
-          <button className="firstBlock_btn">Перевести книгу</button>
+          <button className={"firstBlock_btn"}>Перевести книгу</button>
         </div>
       </div>
     </div>

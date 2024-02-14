@@ -17,7 +17,7 @@ interface RegisterData {
   name: string;
   // surname: string;
   password: string;
-  passwordRepeat: string;
+  password_confirm: string;
   email: string;
 }
 
@@ -71,7 +71,7 @@ export default function RegisterPage() {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
       name: formData.get("name") as string,
-      passwordRepeat: formData.get("passwordRepeat") as string,
+      password_confirm: formData.get("password_confirm") as string,
     };
     registerRequest(dataToSubmit);
   }
@@ -168,7 +168,7 @@ export default function RegisterPage() {
                 required
                 ref={passwordInputRef}
                 type={passwordType}
-                name="passwordRepeat"
+                name="password_confirm"
                 placeholder="Повторите пароль"
               />
             </Form.Group>
