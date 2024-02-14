@@ -9,8 +9,36 @@ import { FreeMode, Pagination } from "swiper/modules";
 import Card from "../card/card";
 import Book from "@/app/books/[slug]/page";
 
-export default function cardList() {
-  const [books, setBooks] = useState([]);
+interface Book {
+  pic: string;
+  name: string;
+  short: string;
+  link: string;
+  author: {
+    id: number;
+    pic: string;
+    fullname: string;
+    bio: string;
+    link: string;
+  };
+  genre: {
+    id: number;
+    name: string;
+    link: string;
+  };
+  audio: string;
+}
+interface CardListProps {
+  books: Book[];
+}
+
+interface Genre {
+  id: number;
+  name: string;
+  link: string;
+}
+
+export default function CardList({ books }: CardListProps) {
 
   return (
     <>
