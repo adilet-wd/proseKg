@@ -1,0 +1,38 @@
+.secondBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  &_img {
+    width: 40vmax;
+  }
+  &_info {
+    width: 40vmax;
+    text-align: center;
+  }
+  &_btn {
+    background-color: #ff7f2c;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  &_btn:hover {
+    box-shadow: #ff802cab 0px 0px 20px;
+    transition: 0.2s;
+  }
+}
+@media screen and (max-width: 991px) {
+  .secondBlock {
+    flex-direction: column;
+    justify-content: space-between;
+    &_img {
+      width: 100%;
+      height: auto;
+    }
+    &_info {
+      width: 90%;
+      text-align: center;
+    }
+  }
+}
