@@ -90,8 +90,8 @@ export default function Library() {
     },
   ];
   useEffect(() => {
-    setBooks(JSONbooks);
-    setGenres(JSONgenres);
+    getBooks();
+    getGenres();
   }, []);
 
   useEffect(() => {
@@ -115,7 +115,7 @@ export default function Library() {
     try {
       const res = await axios.get(`${process.env.API_ROUTE}/content/genres/`);
       console.log(res.data);
-      setBooks(res.data);
+      setGenres(res.data);
     } catch (error) {
       if ((error as any)?.response?.status === 400) {
         console.log((error as any).response.data);
@@ -137,29 +137,15 @@ export default function Library() {
         {books.length != 0 ? (
           books.map((book, index) => {
             return (
-              <li key={index}>
-                <h3>
-                  <Link href={`/books/${book.link}`}>
-                    {" "}
-                    Название: {book.name}
-                  </Link>
-                </h3>
-                <Image
-                  src={book.pic}
-                  alt={book.name}
-                  width={200}
-                  height={200}
-                />
-                <div>Описание: {book.short}</div>
-                <div>Автор: {book.author.fullname}</div>
-                <div>Жанр: {book.genre.name}</div>
-              </li>
+              <Card key={index} book={book}/>
             );
           })
         ) : (
           <li>Нет книг</li>
         )}
       </ul>
+
+
       <h2>Жанры</h2>
       <ul>
         {genres.length != 0 ? (
@@ -174,7 +160,6 @@ export default function Library() {
           <li>Нет книг</li>
         )}
       </ul>
-      <Card />
     </Container>
   );
 }
