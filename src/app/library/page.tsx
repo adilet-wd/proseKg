@@ -7,6 +7,14 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/card/card";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+
+import { FreeMode, Pagination } from "swiper/modules";
 
 interface Book {
   pic: string;
@@ -134,18 +142,25 @@ export default function Library() {
       <div>LibraryPage</div>
       <h2>Книги</h2>
       <ul>
-        {books.length != 0 ? (
-          books.map((book, index) => {
-            return (
-              <Card key={index} book={book}/>
-            );
-          })
-        ) : (
-          <li>Нет книг</li>
-        )}
+        <Swiper
+          slidesPerView={8}
+          spaceBetween={30}
+          freeMode={true}
+          modules={[FreeMode]}
+          className="mySwiper">
+          {books.length != 0 ? (
+            books.map((book, index) => {
+              return (
+                <SwiperSlide>
+                  <Card key={index} book={book} />
+                </SwiperSlide>
+              );
+            })
+          ) : (
+            <li>Нет книг</li>
+          )}
+        </Swiper>
       </ul>
-
-
       <h2>Жанры</h2>
       <ul>
         {genres.length != 0 ? (
