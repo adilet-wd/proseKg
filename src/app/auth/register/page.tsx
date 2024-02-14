@@ -96,7 +96,7 @@ export default function RegisterPage() {
 
   return (
     <Container className="register-container">
-      <Image src={loginimg} alt="error" />
+      <Image src={loginimg} alt="error" className="register-img" />
       <main className="register-component">
         <div className="register-form-wrapper">
           <Form className="register__form " noValidate onSubmit={handleSubmit}>
