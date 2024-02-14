@@ -22,3 +22,17 @@
     transition: 0.2s;
   }
 }
+@media screen and (max-width: 991px) {
+  .firstBlock {
+    flex-direction: column;
+    justify-content: space-between;
+    &_img {
+      width: 100%;
+      height: auto;
+    }
+    &_info {
+      width: 90%;
+      text-align: center;
+    }
+  }
+}

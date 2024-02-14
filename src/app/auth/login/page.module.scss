@@ -1,6 +1,10 @@
 @import "../../../styles/color-variables.scss";
 @import "../../../styles/breakpoint.scss";
 .login {
+  &-img {
+    width: 50%;
+    height: auto;
+  }
   &-container {
     display: flex;
     flex-direction: row;
@@ -149,6 +153,18 @@
           filter: brightness(0.9);
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .login {
+    &-container {
+      flex-direction: column;
+      height: auto;
+    }
+    &-img {
+      margin-top: 10px;
+      width: 80%;
     }
   }
 }

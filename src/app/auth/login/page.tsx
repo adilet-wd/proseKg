@@ -94,7 +94,7 @@ export default function LoginPage() {
 
   return (
     <Container className="login-container">
-      <Image src={loginimg} alt="error" />
+      <Image src={loginimg} alt="error" className="login-img" />
       <main className="login-component">
         <div className="login-form-wrapper">
           <Form className="login__form " noValidate onSubmit={handleSubmit}>

@@ -1,6 +1,10 @@
 @import "../../../styles/color-variables.scss";
 @import "../../../styles/breakpoint.scss";
 .register {
+  &-img {
+    width: 50%;
+    height: auto;
+  }
   &-container {
     display: flex;
     flex-direction: row;
@@ -72,5 +76,17 @@
     flex-direction: row;
     justify-content: center;
     color: black;
+  }
+}
+@media screen and (max-width: 768px) {
+  .register {
+    &-container {
+      flex-direction: column;
+      height: auto;
+    }
+    &-img {
+      margin-top: 10px;
+      width: 80%;
+    }
   }
 }
