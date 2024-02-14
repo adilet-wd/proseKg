@@ -10,6 +10,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
+      <div className="nav-placeholder"></div>
       <Header></Header>
       <main>{children}</main>
       <Footer />

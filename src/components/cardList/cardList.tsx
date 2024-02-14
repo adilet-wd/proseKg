@@ -70,7 +70,7 @@ export default function CardList({ books }: CardListProps) {
             );
           })
         ) : (
-          <li>Нет книг</li>
+          null
         )}
       </Swiper>
     </>

@@ -12,6 +12,16 @@ import { AuthContext } from "../authContext";
 import { useRouter } from "next/navigation";
 
 import loginimg from "../../../assets/images/Tablet login-amico.svg";
+import axios from "axios";
+
+interface LoginData {
+  username: string;
+  password: string;
+}
+interface LoginResponse {
+  refresh: string;
+  access: string;
+}
 
 export default function LoginPage() {
   const passwordInputRef = useRef<HTMLInputElement>(null);
@@ -19,15 +29,11 @@ export default function LoginPage() {
   const [passwordIcon, setPasswordIcon] = useState(lockedPassword);
   const authContext = useContext(AuthContext);
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
+  const { refreshToken, setRefreshToken } = authContext || {};
+  const { accessToken, setAccessToken } = authContext || {};
+
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
-
-  function login() {
-    if (setIsAuthenticated) {
-      setIsAuthenticated(true);
-      router.push(`/myProfile`);
-    }
-  }
 
   // Изменение видимости пароля
   useEffect(() => {
@@ -53,6 +59,46 @@ export default function LoginPage() {
     }
   }, [isAuthenticated]);
 
+  function login(data: LoginResponse) {
+    console.log(`Функция логина${data}`);
+    if(setIsAuthenticated && setRefreshToken && setAccessToken){
+      setIsAuthenticated(true);
+      setRefreshToken(data.refresh);
+      setAccessToken(data.access);
+    }
+  }
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const dataToSubmit: LoginData = {
+      username: formData.get("username") as string,
+      password: formData.get("password") as string,
+    };
+    const loginData = await loginRequest(dataToSubmit);
+    console.log(loginData);
+    if (loginData?.status === 200) {
+      login(loginData);
+    }
+  }
+  
+  async function loginRequest(data: LoginData) {
+    try {
+      const res = await axios.post(
+        `${process.env.API_ROUTE}/regauth/login/`,
+        data
+      );
+      return res;
+    } catch (error) {
+      if ((error as any)?.response?.status === 400) {
+        console.log((error as any).response.data);
+      } else {
+        console.log(`Ошибка`, error);
+      }
+      return (error as any)?.response;
+    }
+  }
+
   function toggleVisibility() {
     if (passwordInputRef.current) {
       if (passwordType === "password") {
@@ -64,22 +110,6 @@ export default function LoginPage() {
         setPasswordIcon(lockedPassword);
       }
     }
-  }
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    const form = e.currentTarget;
-    e.preventDefault();
-    login();
-    // console.log(e)
-    // if (form.checkValidity() === false) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    // }
-    // if (form.checkValidity() === true) {
-    //     orderConfirm(event);
-    //     sendEmail(event);
-    // }
-    // setValidated(true);
   }
 
   if (!isClient) {
@@ -102,9 +132,9 @@ export default function LoginPage() {
               <Form.Control
                 className="login__input"
                 required
-                type="email"
-                name="user_email"
-                placeholder="name@example.com"
+                type="username"
+                name="username"
+                placeholder="username"
                 autoFocus
               />
             </Form.Group>
