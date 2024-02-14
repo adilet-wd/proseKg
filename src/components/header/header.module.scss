@@ -1,90 +1,90 @@
 @import "../../styles/color-variables.scss";
 .header {
-    font-family: 'Montserrat', sans-serif;   
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 30px;
 }
 .logo {
-    width: 100px;
+  width: 100px;
 }
 .logoMobile {
-    order: 2;
-    margin-left: 10px;
+  order: 2;
+  margin-left: 10px;
 }
 
 .header-mobile__links {
-    display: flex;
-    gap: 10px;
-    order: 3;
-    color: $colorTextGray;
-    margin-left: auto;
-    align-items: center;
-    .button-login {
-        @media (max-width: 440px) {
-            display: none;
-        }
+  display: flex;
+  gap: 10px;
+  order: 3;
+  color: $colorTextGray;
+  margin-left: auto;
+  align-items: center;
+  .button-login {
+    @media (max-width: 440px) {
+      display: none;
     }
+  }
 }
 
 .header-mobile__profile {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
 }
 .navbar-toggler {
-    order: 1;
-    transition: none;
-    --bs-navbar-toggler-focus-width: none; 
-    --bs-navbar-toggler-transition: none;
+  order: 1;
+  transition: none;
+  --bs-navbar-toggler-focus-width: none;
+  --bs-navbar-toggler-transition: none;
 }
 .button {
-    text-align: left;
-    background: none;
-    border: none;
+  text-align: left;
+  background: none;
+  border: none;
 }
 .nav-placeholder {
-    content: '';
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 56px;
-    padding: 0;
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  padding: 0;
 }
 .navbar {
-    background-color: $colorWhite;
-    font-size: 16px;
-    &-nav {
-        color: $colorTextDark;
-    };
-    &-brand {
-        display: flex;
-        align-items: center;
-    };
-    &-collapse {
-        justify-content: space-between;
-        flex-grow: 0;
-    };
-    a {
-        text-align: center;
-        color: $colorTextDark;
-        text-decoration: none;
-        &:hover{
-            color: $colorTextDark;
-        }
-        &:focus {
-            color: $colorTextDark;
-        }
+  background-color: $colorWhite;
+  font-size: 16px;
+  &-nav {
+    color: $colorTextDark;
+  }
+  &-brand {
+    display: flex;
+    align-items: center;
+  }
+  &-collapse {
+    justify-content: space-between;
+    flex-grow: 0;
+  }
+  a {
+    text-align: center;
+    color: $colorTextDark;
+    text-decoration: none;
+    &:hover {
+      color: $colorTextDark;
     }
-    
+    &:focus {
+      color: $colorTextDark;
+    }
+  }
 }
 .nav-link {
-    &.btn:active,
-    &.btn:focus,
-    &.btn:hover {
-      background-color: transparent;
-      color: inherit; 
-    }
+  &.btn:active,
+  &.btn:focus,
+  &.btn:hover {
+    background-color: transparent;
+    color: inherit;
+  }
 }
 .navbar > .header-container {
-    display: flex;
-    align-items: baseline;
-    justify-content: flex-start;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
 }

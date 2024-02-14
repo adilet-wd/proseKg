@@ -1,73 +1,76 @@
-@import '../../../styles/color-variables.scss';
-@import '../../../styles/breakpoint.scss';
+@import "../../../styles/color-variables.scss";
+@import "../../../styles/breakpoint.scss";
 .register {
-    &-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        color: $colorTextWhite;
+  &-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: $colorTextWhite;
+  }
+  &-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-title {
+      color: $colorTextDark;
+      font-size: 30px;
     }
-    &-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &-title {
-            color: $colorTextDark;
-            font-size: 30px;
-        }
-        margin-bottom: 30px;
-    }
-    &-component {
-        max-width: 400px;
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 1rem;
-        background-color: $colorPurple;
-        overflow: hidden;
-    }
-    &__password {
-        position: relative;
-    }
-    &__password-logo {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
+    margin-bottom: 30px;
+  }
+  &-component {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  &__password {
+    position: relative;
+  }
+  &__password-logo {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
 
-
-    &-form-wrapper {
-        padding: 40px 40px 10px 40px;
-        @media (max-width: $media-width-sm) {
-            padding: 15px;
-        }
+  &-form-wrapper {
+    padding: 40px 40px 10px 40px;
+    @media (max-width: $media-width-sm) {
+      padding: 15px;
     }
-    &__button {
-        margin-top: 46px;
-        width: 100%;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        line-height: 1.1428;
-        font-weight: 600;
-        border: none; 
-        padding: 15px 32px;
-        color: $colorTextWhite; 
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: #0056b3; 
-
-        }
+  }
+  &__button {
+    margin-top: 46px;
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    line-height: 1.1428;
+    font-weight: 600;
+    border: none;
+    padding: 15px 32px;
+    color: $colorTextWhite;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #0056b3;
     }
-    &__form {
-        margin-bottom: 35px;
-    }
+  }
+  &__form {
+    margin-bottom: 35px;
+  }
+  &__option-voity {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: black;
+  }
 }
