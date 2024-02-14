@@ -1,9 +1,14 @@
+//styles
 @import "../app/auth/login/page.module.scss";
 @import "../app/auth/register/page.module.scss";
 @import "../app/library/page.module.scss";
 @import "../components/header/header.module.scss";
 @import "../components/loadingScreen/loadingScreen.module.scss";
 @import "../styles/color-variables.scss";
+@import "../components/firstSection/firstSection.module.scss";
+
+//font
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
 }
 
@@ -16,6 +21,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 html,
@@ -26,7 +32,6 @@ body {
 
 body {
   background-color: $colorGray;
-
 }
 
 a {
