@@ -32,7 +32,6 @@ export default function cardList() {
           <li>Нет книг</li>
         )}
       </Swiper>
-      t
     </>
   );
 }
