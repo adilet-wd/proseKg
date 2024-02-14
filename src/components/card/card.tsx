@@ -48,7 +48,7 @@ export default function card({ book }: { book: Book }) {
               className="cardBlock_info-bookmark"
             />
           </div>
-          <h6>{book.author.fullname}</h6>
+          <h6 className="cardBlock_author">{book.author.fullname}</h6>
         </div>
         <Link href={`/books/${book.link}`}>
           <div className="cardBlock_info-btn">

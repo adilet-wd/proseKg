@@ -4,6 +4,7 @@ import styles from "./page.module.scss";
 import Header from "@/components/header/header";
 import Library from "./library/page";
 import FirstSection from "@/components/firstSection/firstSection";
+import SecondSection from "@/components/secondSection/secondSection";
 import { Container } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -75,8 +76,20 @@ export default function Home() {
       <div className="nav-placeholder"></div>
       <Header></Header>
       <FirstSection />
-      <main className={styles.main}></main>
-      <CardList books={books}></CardList>
+      {/* <main className={styles.main}></main> */}
+      <div style={{ marginBottom: "50px" }}>
+        <h2 style={{ marginBottom: "20px" }}>Популярные:</h2>
+        <CardList books={books}></CardList>
+      </div>
+      <div style={{ marginBottom: "50px" }}>
+        <h2 style={{ marginBottom: "20px" }}>Аниме:</h2>
+        <CardList books={books}></CardList>
+      </div>{" "}
+      <div style={{ marginBottom: "50px" }}>
+        <h2 style={{ marginBottom: "20px" }}>Художественная литература:</h2>
+        <CardList books={books}></CardList>
+      </div>
+      <SecondSection />
     </Container>
   );
 }

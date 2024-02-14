@@ -108,6 +108,12 @@
 .logo {
   position: relative;
 }
+.cardList_home {
+  margin-top: 100px;
+  > h2 {
+    margin-bottom: 50px;
+  }
+}
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {

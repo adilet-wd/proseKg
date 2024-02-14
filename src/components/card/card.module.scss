@@ -3,6 +3,7 @@
   height: 20vmax;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   &_info {
     display: flex;
     flex-direction: column;
@@ -25,6 +26,8 @@
   }
   &_info-title {
     text-wrap: balance;
+    font-size: medium;
+    font-weight: 600;
   }
   &_info-options {
     display: flex;
@@ -40,5 +43,40 @@
   }
   &_info-bookmark {
     width: 2rem;
+  }
+  &_author {
+    font-size: medium;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cardBlock {
+    width: 15vmax;
+    height: 30vmax;
+    &_info-title {
+      font-size: medium;
+    }
+    &_author {
+      font-size: small;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .cardBlock {
+    width: 22vmax;
+    height: 36vmax;
+    &_info-title {
+      font-size: small;
+    }
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .cardBlock {
+    width: 26vmax;
+    height: 42vmax;
+    &_info-title {
+      font-size: medium;
+    }
   }
 }

@@ -21,7 +21,7 @@ export default function firstSection() {
             аудиокниги, погружаясь в увлекательные истории прямо через наш
             веб-браузер.
           </p>
-          <button className={"firstBlock_btn"}>Перевести книгу</button>
+          <button className={"firstBlock_btn"}>Начать</button>
         </div>
       </div>
     </div>

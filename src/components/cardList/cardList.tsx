@@ -42,7 +42,21 @@ export default function CardList({ books }: CardListProps) {
   return (
     <>
       <Swiper
-        slidesPerView={7}
+        slidesPerView={2}
+        breakpoints={{
+          520: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 5,
+          },
+          1440: {
+            slidesPerView: 7,
+          },
+        }}
         spaceBetween={30}
         freeMode={true}
         modules={[FreeMode]}
