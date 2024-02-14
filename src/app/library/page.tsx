@@ -132,7 +132,7 @@ export default function Library() {
         {books.length != 0 ? books.map((book, index) => {
           return <li key={index}>
             <h3><Link href={`/books/${book.link}`}> Название: {book.name}</Link></h3>
-            <Image src={book.pic} alt={book.name} width={200} height={200} />
+            {/* <Image src={book.pic} alt={book.name} width={200} height={200} /> */}
             <div>Описание: {book.short}</div>
             <div>Автор: {book.author.fullname}</div>
             <div>Жанр: {book.genre.name}</div>

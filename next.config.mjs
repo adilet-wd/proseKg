@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
-import { createProxyMiddleware } from 'http-proxy-middleware';
 const nextConfig = {
   env: {
-    API_ROUTE: 'http://217.151.230.35:999/api/v1',
+    API_ROUTE: 'http://26.78.236.231:8000/api/v1',
   },
   images: {
     remotePatterns: [
@@ -13,14 +12,6 @@ const nextConfig = {
         pathname: '/media/media/**',
       },
     ],
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/api/v1/:path*',
-        destination: 'http://217.151.230.35:999/api/v1/:path*',
-      },
-    ];
   },
 };
 

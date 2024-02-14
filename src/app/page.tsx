@@ -11,7 +11,6 @@ export default function Home() {
       <div className="nav-placeholder"></div>
       <Header></Header>
       <FirstSection />
-      <Library />
       <main className={styles.main}></main>
     </Container>
   );
