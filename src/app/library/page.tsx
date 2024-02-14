@@ -94,7 +94,7 @@ export default function Library() {
       <h2>Книги</h2>
       <ul>
         <Swiper
-          slidesPerView={8}
+          slidesPerView={4}
           spaceBetween={30}
           freeMode={true}
           modules={[FreeMode]}
