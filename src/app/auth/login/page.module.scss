@@ -1,147 +1,154 @@
-@import '../../../styles/color-variables.scss';
-@import '../../../styles/breakpoint.scss';
+@import "../../../styles/color-variables.scss";
+@import "../../../styles/breakpoint.scss";
 .login {
-    &-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        color: $colorTextWhite;
+  &-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: $colorTextWhite;
+  }
+  &-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-title {
+      color: $colorTextDark;
+      font-size: 30px;
     }
-    &-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        &-title {
-            color: $colorTextDark;
-            font-size: 30px;
-        }
-        margin-bottom: 30px;
+    margin-bottom: 30px;
+  }
+  &-component {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  &__password {
+    position: relative;
+  }
+  &__password-logo {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  &-form-wrapper {
+    padding: 40px 40px 10px 40px;
+    @media (max-width: $media-width-sm) {
+      padding: 15px;
+    }
+  }
+  &__button {
+    margin-top: 46px;
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    line-height: 1.1428;
+    font-weight: 600;
+    border: none;
+    padding: 15px 32px;
+    color: $colorTextWhite;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+  &__form {
+    margin-bottom: 35px;
+  }
+  &-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    &__remember-me {
+      font-size: 14px;
+      input {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    &__forgot-password {
+      color: #0056b3;
+      font-size: 13px;
+    }
+    &__haveaccount {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
+    &__haveaccount2 {
+      color: #0056b3;
+    }
+  }
+  &-social {
+    &__separator {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      height: 4rem;
+      justify-content: center;
+      margin: -1.5rem 0 2rem;
+      & > :first-child,
+      & > :last-child {
+        background-color: $colorMain;
+        flex-grow: 1;
+        height: 1px;
+      }
+      &-text {
+        padding: 0 2rem;
+      }
     }
     &-component {
-        max-width: 400px;
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 1rem;
-        background-color: $colorPurple;
-        overflow: hidden;
-    }
-    &__password {
-        position: relative
-    }
-    &__password-logo {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
-
-
-    &-form-wrapper {
-        padding: 40px 40px 10px 40px;
-        @media (max-width: $media-width-sm) {
-            padding: 15px;
-        }
-    }
-    &__button {
-        margin-top: 46px;
-        width: 100%;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        line-height: 1.1428;
-        font-weight: 600;
-        border: none; 
-        padding: 15px 32px;
-        color: $colorTextWhite; 
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: #0056b3; 
-
-        }
-    }
-    &__form {
-        margin-bottom: 35px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
     &-options {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        &__remember-me {
-            font-size: 14px;
-            input {
-                width: 14px;
-                height: 14px;
-            }
-        }
-        &__forgot-password {
-            color: #0056b3;
-            font-size: 13px;
-        }
+      width: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    &-social {
-        &__separator {
-            align-items: center;
-            display: flex;
-            flex-direction: row;
-            height: 4rem;
-            justify-content: center;
-            margin: -1.5rem 0 2rem;
-            & > :first-child, & > :last-child {
-                background-color: $colorMain;
-                flex-grow: 1;
-                height: 1px;
-            }
-            &-text {
-                padding: 0 2rem;
-            }
+    &-button {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-radius: 5px;
+      height: 50px;
+      width: 100%;
+      transition: filter 0.3s ease;
+      .login-social-icon {
+        img {
+          width: 25px;
+          height: 25px;
         }
-        &-component {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
+      }
+      &.-google {
+        background-color: $colorWhite;
+        border: none;
+        color: $colorTextDark;
+        &:hover {
+          color: $colorTextDark;
+          border: none;
+          background-color: $colorWhite;
+          filter: brightness(0.9);
         }
-        &-options {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        &-button {
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 0 20px;
-            border-radius: 5px;
-            height: 50px;
-            width: 100%;
-            transition: filter 0.3s ease;
-            .login-social-icon {
-                img {
-                    width: 25px;
-                    height: 25px;
-                }
-            }
-            &.-google {
-                background-color: $colorWhite;
-                border: none;
-                color: $colorTextDark;
-                &:hover {
-                    color: $colorTextDark;
-                    border: none;  
-                    background-color: $colorWhite;
-                    filter: brightness(0.9);
-                }
-            }   
-        }
-        
-        
+      }
     }
+  }
 }
