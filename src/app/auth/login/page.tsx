@@ -58,7 +58,7 @@ export default function LoginPage() {
     if (isAuthenticated) {
       router.push("/myProfile");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
   function login(data: LoginResponse) {
     if(setIsAuthenticated && setRefreshToken && setAccessToken){

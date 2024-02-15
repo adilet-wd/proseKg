@@ -118,6 +118,7 @@ export default function RegisterPage() {
         if (isRequestSent === false) {
           const res = await checkUsernameUnique(username);
           if (res !== true) {
+            errors.push("Бул колдонуучу ат бош эмес");
             setUsernameFormErrors(["Бул колдонуучу ат бош эмес"]);
           }
         }
@@ -139,6 +140,8 @@ export default function RegisterPage() {
         );
         if(res.status === 200) {
             return true;
+        } else {
+          return false;
         }
     } catch (error) {
       return false;
@@ -321,6 +324,7 @@ export default function RegisterPage() {
       }
     } catch (error) {
       alert("Ошибка регистрации");
+      setIsRequestSent(false);
       if ((error as any)?.response?.status === 400) {
         console.log((error as any).response.data);
       } else {
