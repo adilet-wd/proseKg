@@ -84,6 +84,7 @@ export default function CardList({ books }: CardListProps) {
           },
           1200: {
             slidesPerView: 6,
+            spaceBetween: 30,
           },
           1440: {
             slidesPerView: 6,

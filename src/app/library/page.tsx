@@ -45,7 +45,7 @@ interface Genre {
 export default function Library() {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
-  const [isClient, setIsClient] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
   const [books, setBooks] = useState<Array<Book>>([]);
   const [genres, setGenres] = useState<Array<Genre>>([]);
 
@@ -55,7 +55,15 @@ export default function Library() {
   }, []);
 
   useEffect(() => {
-    setIsClient(true);
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+    handleResize()
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   async function getBooks() {
@@ -85,29 +93,29 @@ export default function Library() {
     }
   }
 
-  if (!isClient) {
-    return <LoadingScreen></LoadingScreen>;
+  if(windowWidth !== 0 && books.length > 0 && genres.length > 0) {
+    return (
+      <Container>
+        <h1>Китепкана</h1>
+        <h2>Книги</h2>
+        <CardList books={books}></CardList>
+        <h2>Жанры</h2>
+        <ul>
+          {genres.length != 0 ? (
+            genres.map((genre, index) => {
+              return (
+                <li key={index}>
+                  <h3>Название: {genre.name}</h3>
+                </li>
+              );
+            })
+          ) : (
+            <li>Нет книг</li>
+          )}
+        </ul>
+      </Container>
+    );
   }
 
-  return (
-    <Container>
-      <div>LibraryPage</div>
-      <h2>Книги</h2>
-      <CardList books={books}></CardList>
-      <h2>Жанры</h2>
-      <ul>
-        {genres.length != 0 ? (
-          genres.map((genre, index) => {
-            return (
-              <li key={index}>
-                <h3>Название: {genre.name}</h3>
-              </li>
-            );
-          })
-        ) : (
-          <li>Нет книг</li>
-        )}
-      </ul>
-    </Container>
-  );
+  return <LoadingScreen />;
 }

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Image from "next/image";
 import bookmark from "../../../assets/icons/Bookmark.svg";
+import Link from "next/link";
 
 interface Book {
   pic: string;
@@ -27,11 +28,24 @@ interface Book {
 }
 
 export default function Book({ params }: { params: { slug: string } }) {
+  const [windowWidth, setWindowWidth] = useState(0);
   const [book, setBook] = useState<Book>();
   const [bookExist, setBookExist] = useState<boolean>();
 
   useEffect(() => {
     getBook();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+    handleResize()
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   async function getBook() {
@@ -54,48 +68,58 @@ export default function Book({ params }: { params: { slug: string } }) {
     }
   }
 
-  if (bookExist === undefined) {
-    return <LoadingScreen></LoadingScreen>;
+  if(bookExist && windowWidth > 0) {
+    return (
+      <>
+        <Container>
+          <h1>Китепкана</h1>
+          <div className="detailsBlock">
+            <div className="detailsBlock_first">
+              <img
+                src={`${book?.pic}`}
+                alt="error"
+                className="detailsBlock_first-img"
+              />
+            </div>
+            <div className="detailsBlock_second">
+              <table className={"detailsBlock-information"}>
+                <tbody>
+                  <tr>
+                    <td className={"detailsBlock-information__column1"}>Китептин аты:</td>
+                    <td className={"detailsBlock-information__column2"}>{book?.name}</td>
+                  </tr>
+                  <tr>
+                    <td className={"detailsBlock-information__column1"}>Автор:</td>
+                    <td className={"detailsBlock-information__column2"}>{book?.author.fullname}</td>
+                  </tr>
+                  <tr>
+                    <td className={"detailsBlock-information__column1"}>Жанр:</td>
+                    <td className={"detailsBlock-information__column2"}>{book?.genre.name}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="detailsBlock_second-opt">
+                <button className="detailsBlock_second-btn">Окуу</button>
+                <Image src={bookmark} alt="error" />
+              </div>
+              <div className="detailsBlock_second-short">{book?.short}</div>
+            </div>
+          </div>
+        </Container>
+      </>
+    );
   }
-
-  if (!bookExist) {
+  if (bookExist == false) {
     return (
       <Container>
-        <div>Книга не найдена</div>
-        <>NOT FOUND PAGE</>
+        <div className="not-found">
+            <h1><Link href={"/"}>404</Link></h1>
+            <h2>Китеп табылган жок</h2>
+            <p>The book you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+        </div>
       </Container>
     );
   }
-  return (
-    <>
-      <Container>
-        <h2>Китепкана</h2>
-        <div className="detailsBlock">
-          <div className="detailsBlock_first">
-            <img
-              src={`${book?.pic}`}
-              alt="error"
-              className="detailsBlock_first-img"
-            />
-          </div>
-          <div className="detailsBlock_second">
-            <div className="detailsBlock_second-text">
-              <strong>Китептин аты:</strong> {book?.name}
-            </div>
-            <div className="detailsBlock_second-text">
-              <strong>Автор:</strong> {book?.author.fullname}
-            </div>
-            <div className="detailsBlock_second-text">
-              <strong>Жанр:</strong> {book?.genre.name}
-            </div>
-            <div className="detailsBlock_second-opt">
-              <button className="detailsBlock_second-btn">Окуу</button>
-              <Image src={bookmark} alt="error" />
-            </div>
-            <div className="detailsBlock_second-short">{book?.short}</div>
-          </div>
-        </div>
-      </Container>
-    </>
-  );
+  return <LoadingScreen></LoadingScreen>;
+  
 }

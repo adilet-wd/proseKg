@@ -1,21 +1,43 @@
+@import "../../../styles/color-variables.scss";
+@import "../../../styles/breakpoint.scss";
 .detailsBlock {
-  margin-top: 20px;
+  margin-top: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 40px;
   &_first {
     display: flex;
     flex-direction: column;
     &-img {
-      width: auto;
-      height: 50vmax;
+      max-width: 450px;
+      height: auto;
+      width: 100%;
+      border-radius: 10px;
     }
   }
   &_second {
     font-size: 25px;
-    width: 50%;
+    width: 100%;
+    max-width: 750px;
+    .detailsBlock-information {
+      width: 100%;
+      tr {
+        border-top: 10px solid transparent;
+      }
+      .detailsBlock-information__column1 {
+        color: $colorTextGray;
+        width: 30%;
+      }
+      .detailsBlock-information__column2 {
+        color: $colorTextBlue;
+        font-weight: 600;
+        width: 70%;
+      }
+    }
     &-short {
       margin-top: 20px;
+      color: $colorTextBlue;
     }
     &-opt {
       display: flex;
@@ -42,9 +64,17 @@
     }
   }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $media-width-xl) {
   .detailsBlock {
     &_second {
+      max-width: 600px;
+    }
+  }
+}
+@media screen and (max-width: $media-width-lg) {
+  .detailsBlock {
+    &_second {
+      max-width: 500px;
       font-size: 20px;
     }
   }
@@ -62,8 +92,9 @@
     &_first {
       margin-bottom: 4rem;
       &-img {
-        width: auto;
-        height: 120vmax;
+        max-width: calc(100vw - 20px);
+        width: 100%;
+        height: auto;
       }
     }
   }
@@ -71,16 +102,58 @@
 @media screen and (max-width: 425px) {
   .detailsBlock {
     &_first-img {
-      width: auto;
-      height: 100vmax;
+      width: 100vw;
+      height: auto;
+    }
+    .detailsBlock_second {
+      .detailsBlock-information {
+        width: 100%;
+        tr {
+          border-top: 10px solid transparent;
+          display: flex;
+          flex-direction: column;
+        }
+        .detailsBlock-information__column1 {
+          color: $colorTextGray;
+          width: 100%;
+        }
+        .detailsBlock-information__column2 {
+          color: $colorTextBlue;
+          font-weight: 600;
+          width: 100%;
+        }
+      }
     }
   }
 }
 @media screen and (max-width: 320px) {
   .detailsBlock {
     &_first-img {
-      width: auto;
-      height: 80vmax;
+      width: 80vw;
+      height: auto;
     }
   }
+}
+/* NotFound.css */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 6em;
+  color: #555;
+}
+
+.not-found h2 {
+  font-size: 2em;
+  color: #999;
+}
+
+.not-found p {
+  color: #666;
 }

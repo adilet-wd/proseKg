@@ -19,7 +19,7 @@ export default function secondSection() {
             dolores quo ad voluptate iusto nemo culpa rem optio laboriosam aut
             quod, eveniet tenetur repellendus, delectus alias cum ab sit at!
           </p>
-          <button className={"secondBlock_btn"}>Начать</button>
+          {/* <button className={"secondBlock_btn"}>Начать</button> */}
         </div>
         <Image src={writerimg} alt="error" className={"secondBlock_img"} />
       </div>

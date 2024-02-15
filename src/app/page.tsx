@@ -86,7 +86,7 @@ export default function Home() {
     }
   }
 
-  if (windowWidth !== 0) {
+  if (windowWidth !== 0 && books.length > 0 && genres.length > 0) {
     return (
       <>
       <div className="nav-placeholder"></div>
