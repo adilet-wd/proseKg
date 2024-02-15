@@ -1,4 +1,6 @@
 import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
+
 import React, { ReactNode } from "react";
 
 type LayoutProps = {
@@ -11,6 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className="nav-placeholder"></div>
       <Header></Header>
       <main>{children}</main>
+      <Footer />
     </>
   );
 };
