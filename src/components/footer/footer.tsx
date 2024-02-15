@@ -15,19 +15,18 @@ export default function footer() {
             веб-браузер.
           </div>
           <div className="footer_block-nav">
-            <Link href="/">Главная</Link>
-            <Link href="/">Читалка</Link>
-            <Link href="/library">Библиотека</Link>
-            <Link href="/aboutus">О нас</Link>
+            <Link href="/">Башкы бет</Link>
+            <Link href="/myProfile">Өздүк кабинет</Link>
+            <Link href="/library">Китепкана</Link>
           </div>
           <div>
-            Контакты:
+            Байланышуу:
             <br />
             +996999555333
             <br />
             +996550444888
             <br />
-            prosekg@gmail.com
+            kanatbekovich36@gmail.com
           </div>
         </div>
       </Container>

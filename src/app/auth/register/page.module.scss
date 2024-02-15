@@ -31,6 +31,10 @@
     overflow: hidden;
   }
   &__password {
+    display: flex;
+    flex-direction: column;
+  }
+  &__password-top {
     position: relative;
   }
   &__password-logo {
@@ -43,6 +47,23 @@
     cursor: pointer;
   }
 
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
+  &__invalid-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: 600;
+    .invalid-feeback__item {
+      display: flex;
+      gap: 5px;
+    }
+    &-icon {
+      fill: aquamarine;
+    }
+  }
   &-form-wrapper {
     padding: 40px 40px 10px 40px;
     @media (max-width: $media-width-sm) {
@@ -50,7 +71,8 @@
     }
   }
   &__button {
-    margin-top: 46px;
+    margin-top: 36px;
+    margin-bottom: 5px;
     width: 100%;
     border-radius: 4px;
     display: flex;
@@ -76,6 +98,9 @@
     flex-direction: row;
     justify-content: center;
     color: black;
+    a {
+      color: #0056b3;
+    }
   }
 }
 @media screen and (max-width: 768px) {
