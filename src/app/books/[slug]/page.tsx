@@ -72,15 +72,27 @@ export default function Book({ params }: { params: { slug: string } }) {
         <h2>Китепкана</h2>
         <div className="detailsBlock">
           <div className="detailsBlock_first">
-            <Image src={`${book?.pic}`} alt="error" width={500} height={700} />
-            <div>
-              <button>Кочуруу</button>
-              <Image src={bookmark} alt="error" />
-            </div>
+            <img
+              src={`${book?.pic}`}
+              alt="error"
+              className="detailsBlock_first-img"
+            />
           </div>
           <div className="detailsBlock_second">
-            <div>{book?.name}</div>
-            <div>{book?.short}</div>
+            <div className="detailsBlock_second-text">
+              <strong>Китептин аты:</strong> {book?.name}
+            </div>
+            <div className="detailsBlock_second-text">
+              <strong>Автор:</strong> {book?.author.fullname}
+            </div>
+            <div className="detailsBlock_second-text">
+              <strong>Жанр:</strong> {book?.genre.name}
+            </div>
+            <div className="detailsBlock_second-opt">
+              <button className="detailsBlock_second-btn">Окуу</button>
+              <Image src={bookmark} alt="error" />
+            </div>
+            <div className="detailsBlock_second-short">{book?.short}</div>
           </div>
         </div>
       </Container>
