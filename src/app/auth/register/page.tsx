@@ -12,6 +12,7 @@ import { AuthContext } from "../authContext";
 
 import loginimg from "../../../assets/images/Tablet login-amico.svg";
 import xmarkFeedback from "../../../assets/icons/xmark-feedback.svg";
+import LoadingScreen from "@/components/loadingScreens/loadingScreen";
 
 interface RegisterData {
   username: string;
@@ -49,6 +50,8 @@ export default function RegisterPage() {
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
   const { refreshToken, setRefreshToken } = authContext || {};
   const { accessToken, setAccessToken } = authContext || {};
+
+  const [windowWidth, setWindowWidth] = useState(0);
   const router = useRouter();
   const [ isRequestSent, setIsRequestSent ] = useState(false);
 
@@ -256,6 +259,18 @@ export default function RegisterPage() {
     }
   }, [isAuthenticated, router]);
 
+  useEffect(() => {
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+    handleResize()
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   // Переключение видимости инпута пароля
   function toggleVisibility() {
     if (passwordInputRef.current) {
@@ -360,173 +375,178 @@ export default function RegisterPage() {
   }
 
 
-  return (
-    <Container className="register-container">
-      <Image src={loginimg} alt="error" className="register-img" />
-      <main className="register-component">
-        <div className="register-form-wrapper">
-          <Form className="register__form" noValidate validated={validated} onSubmit={handleSubmit}>
-            <Form.Group className="mb-3 register__group register__email" controlId="validationEmail">
-              <Form.Control
-                autoFocus={true}
-                className="register__input"
-                required
-                type="email"
-                name="email"
-                placeholder="name@example.com"
-                value={emailForm} 
-                onChange={handleEmailChange}
-              />
-              <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
-                {emailFormError ? 
-                <div className="invalid-feeback__item">
-                  <Image src={xmarkFeedback} alt="" width={20} height={20}/>
-                  {emailFormError}
-                </div> : null}
-              </Form.Control.Feedback>
-            </Form.Group>
-            
-            <Form.Group
-              className="mb-3 register__group register__name"
-              controlId="validationUsername">
-              <Form.Control
-                className="register__input"
-                required
-                type="text"
-                name="username"
-                placeholder="Колдонуучу ат"
-                value={usernameForm} 
-                onChange={handleUsernameChange}
-              />
-              <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
-                {usernameFormErrors ? usernameFormErrors.map((error, index) => (
-                  <div key={index} className="invalid-feeback__item">
-                  <Image src={xmarkFeedback} alt="" width={20} height={20}/>
-                  {error}
-                  </div>
-                 ))
-                : null}
-              </Form.Control.Feedback>
-            </Form.Group>
-            
-            <Form.Group
-              className="mb-3 register__group register__name"
-              controlId="validationName">
-              <Form.Control
-                className="register__input"
-                required
-                type="text"
-                name="name"
-                placeholder="Ат"
-                value={nameForm} 
-                onChange={handleNameChange}
-              />
-              <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
-                {nameFormErrors ? nameFormErrors.map((error, index) => (
-                  <div key={index} className="invalid-feeback__item">
-                  <Image src={xmarkFeedback} alt="" width={20} height={20}/>
-                  {error}
-                  </div>
-                 ))
-                : null}
-              </Form.Control.Feedback>
-            </Form.Group>
-            
-
-            <Form.Group
-              className="mb-3 register__group register__surname"
-              controlId="validationSurname">
-              <Form.Control
-                className="register__input"
-                required
-                type="text"
-                name="surname"
-                placeholder="Фамилия"
-                value={surnameForm} 
-                onChange={handleSurnameChange}
-              />
-
-              <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
-                {surnameFormErrors ? surnameFormErrors.map((error, index) => (
-                  <div key={index} className="invalid-feeback__item">
-                  <Image src={xmarkFeedback} alt="" width={20} height={20}/>
-                  {error}
-                  </div>
-                 ))
-                : null}
-              </Form.Control.Feedback>
-
-            </Form.Group>
-
-            <Form.Group
-              className="mb-3 register__group register__password"
-              controlId="validationPassword">
-                <div className="register__password-top">
-                  <Form.Control
+  if(windowWidth !== 0) {
+    return (
+      <Container className="register-container">
+        <Image src={loginimg} alt="error" className="register-img" />
+        <main className="register-component">
+          <div className="register-form-wrapper">
+            <Form className="register__form" noValidate validated={validated} onSubmit={handleSubmit}>
+              <Form.Group className="mb-3 register__group register__email" controlId="validationEmail">
+                <Form.Control
+                  autoFocus={true}
                   className="register__input"
                   required
-                  ref={passwordInputRef}
-                  type={passwordType}
-                  name="password"
-                  placeholder="Сыр сөз"
-                  value={passwordForm} 
-                  onChange={handlePasswordChange}
+                  type="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  value={emailForm} 
+                  onChange={handleEmailChange}
                 />
-                <Image
-                  className="register__password-logo"
-                  onClick={toggleVisibility}
-                  src={passwordIcon}
-                  alt=""
+                <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
+                  {emailFormError ? 
+                  <div className="invalid-feeback__item">
+                    <Image src={xmarkFeedback} alt="" width={20} height={20}/>
+                    {emailFormError}
+                  </div> : null}
+                </Form.Control.Feedback>
+              </Form.Group>
+              
+              <Form.Group
+                className="mb-3 register__group register__name"
+                controlId="validationUsername">
+                <Form.Control
+                  className="register__input"
+                  required
+                  type="text"
+                  name="username"
+                  placeholder="Колдонуучу ат"
+                  value={usernameForm} 
+                  onChange={handleUsernameChange}
                 />
-                </div>
-                <div className="register__password-bottom">
-                  <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
-                  {passwordFormErrors ? passwordFormErrors.map((error, index) => (
+                <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
+                  {usernameFormErrors ? usernameFormErrors.map((error, index) => (
                     <div key={index} className="invalid-feeback__item">
                     <Image src={xmarkFeedback} alt="" width={20} height={20}/>
                     {error}
                     </div>
-                  ))
+                   ))
                   : null}
-                </Form.Control.Feedback>  
-                </div>
-
+                </Form.Control.Feedback>
+              </Form.Group>
               
+              <Form.Group
+                className="mb-3 register__group register__name"
+                controlId="validationName">
+                <Form.Control
+                  className="register__input"
+                  required
+                  type="text"
+                  name="name"
+                  placeholder="Ат"
+                  value={nameForm} 
+                  onChange={handleNameChange}
+                />
+                <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
+                  {nameFormErrors ? nameFormErrors.map((error, index) => (
+                    <div key={index} className="invalid-feeback__item">
+                    <Image src={xmarkFeedback} alt="" width={20} height={20}/>
+                    {error}
+                    </div>
+                   ))
+                  : null}
+                </Form.Control.Feedback>
+              </Form.Group>
               
-            </Form.Group>
-
-            <Form.Group
-              className="mb-3 register__group register__password"
-              controlId="validationPasswordRepeat">
-              <Form.Control
-                className="register__input"
-                required
-                ref={passwordInputRef}
-                type={passwordType}
-                name="password_confirm"
-                placeholder="Сыр сөздү кайталап жазыңыз"
-                value={repeatPasswordForm} 
-                onChange={handleRepeatPasswordChange}
-              />
-              <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
-                {repeatPasswordFormError ? 
-                <div className="invalid-feeback__item">
-                  <Image src={xmarkFeedback} alt="" width={20} height={20}/>
-                  {repeatPasswordFormError}
-                </div> : null}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Button className="register__button" type="submit">
-              Катталуу
-            </Button>
-            <div className="register__option-voity">
-              Аккаунтуңуз бар болсо&nbsp;<Link href="/auth/login"> Кириңиз</Link>
-            </div>
-          </Form>
-        </div>
-        <h4 className="register-signup"></h4>
-      </main>
-    </Container>
-  );
+  
+              <Form.Group
+                className="mb-3 register__group register__surname"
+                controlId="validationSurname">
+                <Form.Control
+                  className="register__input"
+                  required
+                  type="text"
+                  name="surname"
+                  placeholder="Фамилия"
+                  value={surnameForm} 
+                  onChange={handleSurnameChange}
+                />
+  
+                <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
+                  {surnameFormErrors ? surnameFormErrors.map((error, index) => (
+                    <div key={index} className="invalid-feeback__item">
+                    <Image src={xmarkFeedback} alt="" width={20} height={20}/>
+                    {error}
+                    </div>
+                   ))
+                  : null}
+                </Form.Control.Feedback>
+  
+              </Form.Group>
+  
+              <Form.Group
+                className="mb-3 register__group register__password"
+                controlId="validationPassword">
+                  <div className="register__password-top">
+                    <Form.Control
+                    className="register__input"
+                    required
+                    ref={passwordInputRef}
+                    type={passwordType}
+                    name="password"
+                    placeholder="Сыр сөз"
+                    value={passwordForm} 
+                    onChange={handlePasswordChange}
+                  />
+                  <Image
+                    className="register__password-logo"
+                    onClick={toggleVisibility}
+                    src={passwordIcon}
+                    alt=""
+                  />
+                  </div>
+                  <div className="register__password-bottom">
+                    <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
+                    {passwordFormErrors ? passwordFormErrors.map((error, index) => (
+                      <div key={index} className="invalid-feeback__item">
+                      <Image src={xmarkFeedback} alt="" width={20} height={20}/>
+                      {error}
+                      </div>
+                    ))
+                    : null}
+                  </Form.Control.Feedback>  
+                  </div>
+  
+                
+                
+              </Form.Group>
+  
+              <Form.Group
+                className="mb-3 register__group register__password"
+                controlId="validationPasswordRepeat">
+                <Form.Control
+                  className="register__input"
+                  required
+                  ref={passwordInputRef}
+                  type={passwordType}
+                  name="password_confirm"
+                  placeholder="Сыр сөздү кайталап жазыңыз"
+                  value={repeatPasswordForm} 
+                  onChange={handleRepeatPasswordChange}
+                />
+                <Form.Control.Feedback className="register__invalid-feedback" type="invalid">
+                  {repeatPasswordFormError ? 
+                  <div className="invalid-feeback__item">
+                    <Image src={xmarkFeedback} alt="" width={20} height={20}/>
+                    {repeatPasswordFormError}
+                  </div> : null}
+                </Form.Control.Feedback>
+              </Form.Group>
+  
+              <Button className="register__button" type="submit">
+                Катталуу
+              </Button>
+              <div className="register__option-voity">
+                Аккаунтуңуз бар болсо&nbsp;<Link href="/auth/login"> Кириңиз</Link>
+              </div>
+            </Form>
+          </div>
+          <h4 className="register-signup"></h4>
+        </main>
+      </Container>
+    );
+  }
+  return (
+    <LoadingScreen></LoadingScreen>
+  )
 }

@@ -12,6 +12,7 @@ import { AuthContext } from "../authContext";
 import { useRouter } from "next/navigation";
 
 import loginimg from "../../../assets/images/Tablet login-amico.svg";
+// import loginimg from "../../../assets/images/login-img.jpg";
 import axios from "axios";
 
 interface LoginData {
@@ -33,7 +34,7 @@ export default function LoginPage() {
   const { accessToken, setAccessToken } = authContext || {};
   const [ userExistance, setUserExistance] = useState<string>("");
 
-  const [isClient, setIsClient] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
   const router = useRouter();
 
   // Изменение видимости пароля
@@ -50,7 +51,15 @@ export default function LoginPage() {
 
   // Проверка на клиента
   useEffect(() => {
-    setIsClient(true);
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+    handleResize()
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // Редирект на страницу Профиля, если пользователь уже вошел
@@ -59,6 +68,8 @@ export default function LoginPage() {
       router.push("/myProfile");
     }
   }, [isAuthenticated, router]);
+
+
 
   function login(data: LoginResponse) {
     if(setIsAuthenticated && setRefreshToken && setAccessToken){
@@ -113,73 +124,70 @@ export default function LoginPage() {
     }
   }
 
-  if (!isClient) {
+  if (windowWidth !== 0) {
     return (
-      <main>
-        <Container>
-          <LoadingScreen></LoadingScreen>
-        </Container>
-      </main>
+      <Container className="login-container">
+        <Image src={loginimg} alt="error" className="login-img" />
+        <main className="login-component">
+          <div className="login-form-wrapper">
+            <Form className="login__form " noValidate onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="validationMail">
+                <Form.Control
+                  className="login__input"
+                  required
+                  type="username"
+                  name="username"
+                  placeholder="Колдонуучу ат"
+                  autoFocus
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3 login__password"
+                controlId="validationPassword">
+                <Form.Control
+                  className="login__input"
+                  required
+                  ref={passwordInputRef}
+                  type={passwordType}
+                  name="password"
+                  placeholder="Сыр сөз"
+                />
+                <Image
+                  className="login__password-logo"
+                  onClick={toggleVisibility}
+                  src={passwordIcon}
+                  alt=""
+                />
+              </Form.Group>
+              <div className="login-options__user-existance">
+                {userExistance}
+              </div>
+              {/* <div className="login-options">
+                <Form.Check
+                  className="login-options__remember-me"
+                  type={"checkbox"}
+                  id={`default-checkbox`}
+                  label={`Запомнить меня`}
+                />
+                <Link className="login-options__forgot-password" href="#">
+                  Забыли пароль?
+                </Link>
+              </div> */}
+              <Button className="login__button" type="submit">
+                Войти
+              </Button>
+              <div className="login-options__haveaccount">
+                Аккаунтуңуз жок болсо&nbsp;<Link className="login-options__haveaccount2" href="/auth/register"> Катталыңыз</Link>
+              </div>
+            </Form>
+          </div>
+        </main>
+      </Container>
     );
   }
 
   return (
-    <Container className="login-container">
-      <Image src={loginimg} alt="error" className="login-img" />
-      <main className="login-component">
-        <div className="login-form-wrapper">
-          <Form className="login__form " noValidate onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="validationMail">
-              <Form.Control
-                className="login__input"
-                required
-                type="username"
-                name="username"
-                placeholder="Колдонуучу ат"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3 login__password"
-              controlId="validationPassword">
-              <Form.Control
-                className="login__input"
-                required
-                ref={passwordInputRef}
-                type={passwordType}
-                name="password"
-                placeholder="Сыр сөз"
-              />
-              <Image
-                className="login__password-logo"
-                onClick={toggleVisibility}
-                src={passwordIcon}
-                alt=""
-              />
-            </Form.Group>
-            <div className="login-options__user-existance">
-              {userExistance}
-            </div>
-            {/* <div className="login-options">
-              <Form.Check
-                className="login-options__remember-me"
-                type={"checkbox"}
-                id={`default-checkbox`}
-                label={`Запомнить меня`}
-              />
-              <Link className="login-options__forgot-password" href="#">
-                Забыли пароль?
-              </Link>
-            </div> */}
-            <Button className="login__button" type="submit">
-              Войти
-            </Button>
-            <div className="login-options__haveaccount">
-              Аккаунтуңуз жок болсо&nbsp;<Link className="login-options__haveaccount2" href="/auth/register"> Катталыңыз</Link>
-            </div>
-          </Form>
-        </div>
-      </main>
-    </Container>
-  );
+    <LoadingScreen></LoadingScreen>
+  )
+  
 }

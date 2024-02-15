@@ -10,6 +10,7 @@ import { Container } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import CardList from "@/components/cardList/cardList";
+import LoadingScreen from "@/components/loadingScreens/loadingScreen";
 
 interface Book {
   pic: string;
@@ -37,6 +38,7 @@ interface Genre {
 }
 
 export default function Home() {
+  const [windowWidth, setWindowWidth] = useState(0);
   const [books, setBooks] = useState<Array<Book>>([]);
   const [genres, setGenres] = useState<Array<Genre>>([]);
 
@@ -44,6 +46,18 @@ export default function Home() {
     getBooks();
     getGenres();
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+    handleResize()
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+}, []);
 
   async function getBooks() {
     try {
@@ -72,35 +86,48 @@ export default function Home() {
     }
   }
 
+  if (windowWidth !== 0) {
+    return (
+      <>
+      <div className="nav-placeholder"></div>
+      <Header></Header>
+      <main className={styles.main}>
+        <Container>
+          <FirstSection />
+        </Container>
+        <Container>
+          <div style={{ marginBottom: "50px" }}>
+            <h2 style={{ marginBottom: "20px" }}>Популярные:</h2>
+            <CardList books={books}></CardList>
+          </div>
+        </Container>
+        <Container>
+          <div style={{ marginBottom: "50px" }}>
+            <h2 style={{ marginBottom: "20px" }}>Аниме:</h2>
+            <CardList books={books}></CardList>
+          </div>
+        </Container>
+        <Container>
+          <div style={{ marginBottom: "50px" }}>
+            <h2 style={{ marginBottom: "20px" }}>Художественная литература:</h2>
+            <CardList books={books}></CardList>
+          </div>
+        </Container>
+        <Container>
+          <SecondSection />
+        </Container>
+      </main>
+      <Footer />
+      </>
+    )
+  }
+
   return (
     <>
     <div className="nav-placeholder"></div>
     <Header></Header>
     <main className={styles.main}>
-      <Container>
-        <FirstSection />
-      </Container>
-      <Container>
-        <div style={{ marginBottom: "50px" }}>
-          <h2 style={{ marginBottom: "20px" }}>Популярные:</h2>
-          <CardList books={books}></CardList>
-        </div>
-      </Container>
-      <Container>
-        <div style={{ marginBottom: "50px" }}>
-          <h2 style={{ marginBottom: "20px" }}>Аниме:</h2>
-          <CardList books={books}></CardList>
-        </div>
-      </Container>
-      <Container>
-        <div style={{ marginBottom: "50px" }}>
-          <h2 style={{ marginBottom: "20px" }}>Художественная литература:</h2>
-          <CardList books={books}></CardList>
-        </div>
-      </Container>
-      <Container>
-        <SecondSection />
-      </Container>
+      <LoadingScreen/>
     </main>
     <Footer />
     </>

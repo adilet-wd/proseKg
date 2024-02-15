@@ -16,11 +16,6 @@ export default function Header() {
     const [windowWidth, setWindowWidth] = useState(0);
     const authContext = useContext(AuthContext);
     const { isAuthenticated, setIsAuthenticated } = authContext || {};
-    // const [isClient, setIsClient] = useState(false);
-
-    // useEffect(() => {
-    //     setIsClient(true);
-    // }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -33,10 +28,6 @@ export default function Header() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-    // if (!isClient) {
-    //     return <LoadingScreen></LoadingScreen>;
-    // }
 
     if (windowWidth && windowWidth >= 768) {
         return <HeaderDesktop />;
