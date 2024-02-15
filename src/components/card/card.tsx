@@ -52,7 +52,7 @@ export default function card({ book }: { book: Book }) {
         </div>
         <Link href={`/books/${book.link}`}>
           <div className="cardBlock_info-btn">
-            Слушать
+            Окуу
             <Image src={playicon} alt="error" />
           </div>
         </Link>

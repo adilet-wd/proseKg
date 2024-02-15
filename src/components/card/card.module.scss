@@ -1,6 +1,70 @@
+// .swiper-wrapper {
+//   max-height: 400px;
+//   height: 100%;
+// }
+.carousel-library {
+  // height: 430px;
+
+  @media screen and (min-width: 1400px) {
+    & {
+      height: 430px;
+    }
+  }
+  @media screen and (max-width: 1400px) {
+    & {
+      height: 400px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    & {
+      height: 380px;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    & {
+      height: 380px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    & {
+      height: 350px;
+    }
+  }
+  @media screen and (max-width: 575px) {
+    & {
+      height: 380px;
+    }
+  }
+  @media screen and (max-width: 575px) {
+    & {
+      height: 380px;
+    }
+  }
+  @media screen and (max-width: 561px) {
+    & {
+      height: 480px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    & {
+      height: 450px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    & {
+      height: calc(100vw + 30px);
+    }
+  }
+  // @media screen and (max-width: 360px) {
+  //   & {
+  //     height: 390px;
+  //   }
+  // }
+  
+}
 .cardBlock {
-  width: 10vmax;
-  height: 20vmax;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,8 +92,10 @@
     text-wrap: balance;
     font-size: medium;
     font-weight: 600;
+    text-transform: uppercase;
   }
   &_info-options {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -39,7 +105,8 @@
     height: 100%;
   }
   &_imgBlock {
-    height: 50%;
+    width: 100%;
+    height: auto;
   }
   &_info-bookmark {
     width: 2rem;
@@ -51,8 +118,6 @@
 
 @media screen and (max-width: 1024px) {
   .cardBlock {
-    width: 15vmax;
-    height: 30vmax;
     &_info-title {
       font-size: medium;
     }
@@ -63,8 +128,6 @@
 }
 @media screen and (max-width: 768px) {
   .cardBlock {
-    width: 22vmax;
-    height: 36vmax;
     &_info-title {
       font-size: small;
     }
@@ -73,8 +136,6 @@
 
 @media screen and (max-width: 678px) {
   .cardBlock {
-    width: 26vmax;
-    height: 42vmax;
     &_info-title {
       font-size: medium;
     }
