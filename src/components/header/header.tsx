@@ -24,7 +24,7 @@ export default function Header() {
         };
     }, []);
 
-    if (windowWidth && windowWidth > 768) {
+    if (windowWidth && windowWidth >= 768) {
         return <HeaderDesktop />;
     } else if (windowWidth && windowWidth > 0) {
         return <HeaderMobile />;

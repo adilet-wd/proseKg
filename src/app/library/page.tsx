@@ -15,6 +15,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 import { FreeMode, Pagination } from "swiper/modules";
+import CardList from "@/components/cardList/cardList";
 
 interface Book {
   pic: string;
@@ -92,26 +93,7 @@ export default function Library() {
     <Container>
       <div>LibraryPage</div>
       <h2>Книги</h2>
-      <ul>
-        <Swiper
-          slidesPerView={7}
-          spaceBetween={30}
-          freeMode={true}
-          modules={[FreeMode]}
-          className="mySwiper">
-          {books.length != 0 ? (
-            books.map((book, index) => {
-              return (
-                <SwiperSlide key={index}>
-                  <Card key={index} book={book} />
-                </SwiperSlide>
-              );
-            })
-          ) : (
-            <li>Нет книг</li>
-          )}
-        </Swiper>
-      </ul>
+      <CardList books={books}></CardList>
       <h2>Жанры</h2>
       <ul>
         {genres.length != 0 ? (

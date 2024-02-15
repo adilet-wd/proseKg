@@ -55,9 +55,9 @@ export default function CardList({ books }: CardListProps) {
           },
           1440: {
             slidesPerView: 7,
+            spaceBetween: 40,
           },
         }}
-        spaceBetween={30}
         freeMode={true}
         modules={[FreeMode]}
         className="mySwiper">
