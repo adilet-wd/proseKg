@@ -1,5 +1,5 @@
 "use client";
-import LoadingScreen from "@/components/loadingScreen/loadingScreen";
+import LoadingScreen from "@/components/loadingScreens/loadingScreen";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";

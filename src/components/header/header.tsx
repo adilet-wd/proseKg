@@ -1,10 +1,12 @@
 'use client'
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import HeaderDesktop from './headerDesktop';
 import HeaderMobile from './headerMobile';
 import { useRouter } from 'next/router';
-import LoadingScreen from '../loadingScreen/loadingScreen';
+import LoadingScreen from '../loadingScreens/loadingScreen';
+import HeaderLoadingScreen from '../loadingScreens/headerLoadingScreen';
+import { AuthContext } from '@/app/auth/authContext';
 
 export interface Props {
 }
@@ -12,6 +14,8 @@ export interface Props {
 
 export default function Header() {
     const [windowWidth, setWindowWidth] = useState(0);
+    const authContext = useContext(AuthContext);
+    const { isAuthenticated, setIsAuthenticated } = authContext || {};
     // const [isClient, setIsClient] = useState(false);
 
     // useEffect(() => {
@@ -39,6 +43,7 @@ export default function Header() {
     } else if (windowWidth && windowWidth > 0) {
         return <HeaderMobile />;
     }
+    return <HeaderLoadingScreen/>;
 }
 
 // Helper functions

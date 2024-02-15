@@ -73,25 +73,36 @@ export default function Home() {
   }
 
   return (
-    <Container>
-      <div className="nav-placeholder"></div>
-      <Header></Header>
-      <FirstSection />
-      {/* <main className={styles.main}></main> */}
-      <div style={{ marginBottom: "50px" }}>
-        <h2 style={{ marginBottom: "20px" }}>Популярные:</h2>
-        <CardList books={books}></CardList>
-      </div>
-      <div style={{ marginBottom: "50px" }}>
-        <h2 style={{ marginBottom: "20px" }}>Аниме:</h2>
-        <CardList books={books}></CardList>
-      </div>{" "}
-      <div style={{ marginBottom: "50px" }}>
-        <h2 style={{ marginBottom: "20px" }}>Художественная литература:</h2>
-        <CardList books={books}></CardList>
-      </div>
-      <SecondSection />
-      <Footer />
-    </Container>
+    <>
+    <div className="nav-placeholder"></div>
+    <Header></Header>
+    <main className={styles.main}>
+      <Container>
+        <FirstSection />
+      </Container>
+      <Container>
+        <div style={{ marginBottom: "50px" }}>
+          <h2 style={{ marginBottom: "20px" }}>Популярные:</h2>
+          <CardList books={books}></CardList>
+        </div>
+      </Container>
+      <Container>
+        <div style={{ marginBottom: "50px" }}>
+          <h2 style={{ marginBottom: "20px" }}>Аниме:</h2>
+          <CardList books={books}></CardList>
+        </div>
+      </Container>
+      <Container>
+        <div style={{ marginBottom: "50px" }}>
+          <h2 style={{ marginBottom: "20px" }}>Художественная литература:</h2>
+          <CardList books={books}></CardList>
+        </div>
+      </Container>
+      <Container>
+        <SecondSection />
+      </Container>
+    </main>
+    <Footer />
+    </>
   );
 }

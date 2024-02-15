@@ -7,7 +7,7 @@ import Image from "next/image";
 
 import unlockedPassword from "../../../assets/icons/unlock-password.svg";
 import lockedPassword from "../../../assets/icons/lock-password.svg";
-import LoadingScreen from "@/components/loadingScreen/loadingScreen";
+import LoadingScreen from "@/components/loadingScreens/loadingScreen";
 import { AuthContext } from "../authContext";
 import { useRouter } from "next/navigation";
 

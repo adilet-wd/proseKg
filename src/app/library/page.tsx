@@ -1,5 +1,5 @@
 "use client";
-import LoadingScreen from "@/components/loadingScreen/loadingScreen";
+import LoadingScreen from "@/components/loadingScreens/loadingScreen";
 import React, { useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { AuthContext } from "../auth/authContext";

@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import styles from "./page.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/authContext";
-import LoadingScreen from "@/components/loadingScreen/loadingScreen";
+import LoadingScreen from "@/components/loadingScreens/loadingScreen";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 

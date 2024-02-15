@@ -1,6 +1,12 @@
 @import "../../styles/color-variables.scss";
 .header {
   font-family: "Montserrat", sans-serif;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  height: 56px;
 }
 .logo {
   width: 100px;

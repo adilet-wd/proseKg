@@ -5,7 +5,7 @@ import { Container, Nav, NavLink, Navbar } from "react-bootstrap";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/app/auth/authContext";
-import LoadingScreen from "../loadingScreen/loadingScreen";
+import LoadingScreen from "../loadingScreens/loadingScreen";
 
 export default function HeaderDesktop() {
   const authContext = useContext(AuthContext);

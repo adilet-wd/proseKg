@@ -3,7 +3,7 @@
 @import "../app/auth/register/page.module.scss";
 @import "../app/library/page.module.scss";
 @import "../components/header/header.module.scss";
-@import "../components/loadingScreen/loadingScreen.module.scss";
+@import "../components/loadingScreens/loadingScreen.module.scss";
 @import "../styles/color-variables.scss";
 @import "../styles/nullstyles.scss";
 @import "../components/firstSection/firstSection.module.scss";
@@ -35,7 +35,6 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-
 body {
   background-color: $colorGray;
 }

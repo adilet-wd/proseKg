@@ -10,7 +10,7 @@ import {
   Offcanvas,
 } from "react-bootstrap";
 import Link from "next/link";
-import LoadingScreen from "../loadingScreen/loadingScreen";
+import LoadingScreen from "../loadingScreens/loadingScreen";
 import { AuthContext } from "@/app/auth/authContext";
 import { useContext } from "react";
 import Image from "next/image";
