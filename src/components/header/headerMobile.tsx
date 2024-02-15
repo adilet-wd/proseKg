@@ -44,7 +44,7 @@ export default function HeaderMobile() {
               <Link
                 href="/library"
                 className={`${styles.button} library nav-link`}>
-                Библиотека
+                Китепкана
               </Link>
             </div>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-md`} />
@@ -60,27 +60,27 @@ export default function HeaderMobile() {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Link onClick={closeCanvas} href="/" className="nav-link">
-                    Главная
+                    Башкы бет
                   </Link>
                   <Link
                     onClick={closeCanvas}
                     href="/library"
                     className="nav-link">
-                    Библиотека
+                    Китепкана
                   </Link>
                   {isAuthenticated ? (
                     <Link
                       onClick={closeCanvas}
                       href="/myProfile"
                       className="nav-link">
-                      Личный кабинет
+                      Өздүк кабинет
                     </Link>
                   ) : (
                     <Link
                       onClick={closeCanvas}
                       href="/auth/login"
                       className={`${styles.button} nav-link`}>
-                      Войти
+                      Кирүү
                     </Link>
                   )}
                 </Nav>

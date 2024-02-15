@@ -31,6 +31,7 @@ export default function LoginPage() {
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
   const { refreshToken, setRefreshToken } = authContext || {};
   const { accessToken, setAccessToken } = authContext || {};
+  const [ userExistance, setUserExistance] = useState<string>("");
 
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
@@ -69,17 +70,23 @@ export default function LoginPage() {
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const dataToSubmit: LoginData = {
-      username: formData.get("username") as string,
-      password: formData.get("password") as string,
-    };
-    const loginData = await loginRequest(dataToSubmit);
-    console.log(loginData);
-    if (loginData?.status === 200) {
-      login(loginData.data);
+    try {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const dataToSubmit: LoginData = {
+        username: formData.get("username") as string,
+        password: formData.get("password") as string,
+      };
+      const loginData = await loginRequest(dataToSubmit);
+      if (loginData?.status === 200) {
+        login(loginData.data);
+      } else {
+        setUserExistance("Мындай колдонуучу жок");
+      }
+    } catch (error) {
+      setUserExistance("Мындай колдонуучу жок")
     }
+    
   }
   
   async function loginRequest(data: LoginData) {
@@ -90,11 +97,6 @@ export default function LoginPage() {
       );
       return res;
     } catch (error) {
-      if ((error as any)?.response?.status === 400) {
-        console.log((error as any).response.data);
-      } else {
-        console.log(`Ошибка`, error);
-      }
       return (error as any)?.response;
     }
   }
@@ -105,7 +107,6 @@ export default function LoginPage() {
         setpasswordType("text");
         setPasswordIcon(unlockedPassword);
       } else {
-        console.log("Нажатие");
         setpasswordType("password");
         setPasswordIcon(lockedPassword);
       }
@@ -134,7 +135,7 @@ export default function LoginPage() {
                 required
                 type="username"
                 name="username"
-                placeholder="username"
+                placeholder="Колдонуучу ат"
                 autoFocus
               />
             </Form.Group>
@@ -147,7 +148,7 @@ export default function LoginPage() {
                 ref={passwordInputRef}
                 type={passwordType}
                 name="password"
-                placeholder="Пароль"
+                placeholder="Сыр сөз"
               />
               <Image
                 className="login__password-logo"
@@ -156,7 +157,10 @@ export default function LoginPage() {
                 alt=""
               />
             </Form.Group>
-            <div className="login-options">
+            <div className="login-options__user-existance">
+              {userExistance}
+            </div>
+            {/* <div className="login-options">
               <Form.Check
                 className="login-options__remember-me"
                 type={"checkbox"}
@@ -166,35 +170,14 @@ export default function LoginPage() {
               <Link className="login-options__forgot-password" href="#">
                 Забыли пароль?
               </Link>
-            </div>
+            </div> */}
             <Button className="login__button" type="submit">
               Войти
             </Button>
             <div className="login-options__haveaccount">
-              Нет аккаунта?
-              <Link
-                className="login-options__haveaccount2"
-                href="/auth/register">
-                Регистрация
-              </Link>
+              Аккаунтуңуз жок болсо&nbsp;<Link className="login-options__haveaccount2" href="/auth/register"> Катталыңыз</Link>
             </div>
           </Form>
-          {/* <div className="login-social-component">
-                            <div className="login-social__separator">
-                                <div></div>
-                                <div className="login-social__separator-text">Или</div>
-                                <div></div>
-                            </div>
-                            <div className="login-social-options">
-                                <Button className="login-social-button -google">
-                                    <div className="login-social-icon">
-                                        <Image src={googleIcon} alt="Google Icon" />   
-                                    </div>
-                                    <div className="login-social-text">Войти через Google</div>
-                                    <div></div>
-                                </Button>
-                            </div>
-                        </div> */}
         </div>
       </main>
     </Container>

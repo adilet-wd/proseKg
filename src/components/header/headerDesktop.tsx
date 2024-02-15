@@ -32,20 +32,20 @@ export default function HeaderDesktop() {
 
             <Nav className="mr-auto">
               <Link href="/" className="nav-link">
-                Главная
+                Башкы бет
               </Link>
               <Link href="/library" className="nav-link">
-                Библиотека
+                Китепкана
               </Link>
               {isAuthenticated ? (
                 <Link href="/myProfile" className="nav-link">
-                  Личный кабинет
+                  Өздүк кабинет
                 </Link>
               ) : (
                 <Link
                   href="/auth/login"
                   className={`${styles.button} nav-link`}>
-                  Войти
+                  Кирүү
                 </Link>
               )}
             </Nav>
