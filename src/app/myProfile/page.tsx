@@ -35,7 +35,7 @@ export default function MyProfile() {
   const [isClient, setIsClient] = useState(false);
   const { refreshToken, setRefreshToken } = authContext || {};
   const { accessToken, setAccessToken } = authContext || {};
-  const { user, setUser} = useState<User>();
+  const [user, setUser] = useState<User>();
   const router = useRouter();
 
   // Проверка на клиента
@@ -48,55 +48,82 @@ export default function MyProfile() {
     if (!isAuthenticated) {
       router.push('/'); 
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, router]);
 
+  // Получение профиля пользователя при загрузке страницы
   useEffect(() => {
     if(isClient && refreshToken) {
       getProfile();
     }
-  }, [isClient, refreshToken]);
+    // getProfile();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isClient, refreshToken, router]);
 
-
-  function login() {
-    if (setIsAuthenticated) {
-      setIsAuthenticated(true);
-    }
-  }
-
-  function logout(){
-    if (setIsAuthenticated) {
+  async function logoutFromServer(){
+    const isDeleted = await deleteToken();
+    if (isDeleted && setIsAuthenticated && setAccessToken && setRefreshToken) {
       setIsAuthenticated(false);
+      setAccessToken('');
+      setRefreshToken('');
+      console.log("Пользователь вышел", isDeleted);
     }
   }
 
+  async function logoutFromClient() {
+    if(setAccessToken && setRefreshToken && setIsAuthenticated){
+      setAccessToken('');
+      setRefreshToken('');
+      setIsAuthenticated(false);
+      console.log("Пользователь вышел из системы");
+    }
+  }
+
+  // Функция для получения данных о пользователе с сервера
   async function getProfile() {
     try {
-      console.log(refreshToken);
       const newAccessToken = await axios.post(
         `${process.env.API_ROUTE}/regauth/refresh-token/`,
         {
           refresh: refreshToken,
         }
       );
-      setAccessToken(newAccessToken.data.access);
-      console.log(newAccessToken.data.access);
-      const res = await axios.post(`${process.env.API_ROUTE}/regauth/user-profile/`, {}, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
+      console.log(newAccessToken);
+      if (setAccessToken) {
+        setAccessToken(newAccessToken.data.access);
+        const res = await axios.get(`${process.env.API_ROUTE}/regauth/user-profile/`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        });
+        setUser(res.data);
       }
-      );
-      setUser(res.data);
-
     } catch (error) {
-      if ((error as any)?.response?.status === 400) {
-        console.log((error as any).response.data);
+      // Если токен просрочился, то возвращает на главную и выходит из сайта
+      if ((error as any)?.response?.status === 401) {
+        logoutFromClient();
+        router.push('/');
       } else {
         console.log(`Ошибка`, error);
       }
     }
   }
-
+  async function deleteToken() {
+    try {
+      const res = await axios.post(
+        `${process.env.API_ROUTE}/regauth/logout/`,
+        {
+          refresh: refreshToken,
+        }
+      );
+      if (res.status === 200) {
+        return true;
+      }
+    } catch (error) {
+      console.log(`Ошибка`, error);
+      return false;
+    }
+  }
+  // Загрузочный экран
   if (!isClient) {
     return (
       <main>
@@ -114,8 +141,7 @@ export default function MyProfile() {
             <h2>Здесь будет страница с личным кабинетом</h2>
             <p>{isAuthenticated ? 'Пользователь вошел' : 'Пользователь не вошел'}</p>
             <p>{user?.username}</p>
-            <button onClick={logout}>Выйти</button>
-            <button onClick={login}> Войти</button>
+            <button onClick={logoutFromServer}>Выйти</button>
         </Container>
     </main>
   );

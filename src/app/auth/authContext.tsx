@@ -2,7 +2,14 @@
 import React, { createContext, useEffect, useState } from 'react';
 
 // Создаем контекст
-export const AuthContext = createContext<{ isAuthenticated: boolean; setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>> } | null>(null);
+export const AuthContext = createContext<{ 
+  isAuthenticated: boolean; 
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  accessToken?: string;
+  setAccessToken?: React.Dispatch<React.SetStateAction<string>>;
+  refreshToken?: string;
+  setRefreshToken?: React.Dispatch<React.SetStateAction<string>>;
+} | null>(null);
 
 // Создаем провайдер контекста
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -17,7 +24,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [refreshToken, setRefreshToken] = useState(() => {
     if (typeof window !== 'undefined') {
       const currentAuth = localStorage.getItem('ProsekgRefreshToken');
-      console.log(`refresh: ${currentAuth}`);
       return currentAuth ? currentAuth : '';
     }
     return '';
@@ -26,7 +32,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [accessToken, setAccessToken] = useState(() => {
     if (typeof window !== 'undefined') {
       const currentAuth = localStorage.getItem('ProsekgAccessToken');
-      console.log(`acces: ${currentAuth}`);
       return currentAuth ? currentAuth : '';
     }
     return '';
@@ -51,7 +56,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [accessToken]);
 
   return (
-    <AuthContext.Provider value= {{ isAuthenticated, setIsAuthenticated, accessToken, setAccessToken, refreshToken, setRefreshToken } as { isAuthenticated: boolean; setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>; accessToken: string; setAccessToken: React.Dispatch<React.SetStateAction<string>>; refreshToken: string; setRefreshToken: React.Dispatch<React.SetStateAction<string>> }}>
+    <AuthContext.Provider value= {{
+        isAuthenticated,
+        setIsAuthenticated,
+        accessToken,
+        setAccessToken,
+        refreshToken,
+        setRefreshToken
+      }}>
       {children}
     </AuthContext.Provider>
   );

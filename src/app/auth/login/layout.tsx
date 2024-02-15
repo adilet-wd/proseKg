@@ -13,7 +13,6 @@ const Layout = ({ children }: LayoutProps) => {
       <div className="nav-placeholder"></div>
       <Header></Header>
       <main>{children}</main>
-      <Footer />
     </>
   );
 };

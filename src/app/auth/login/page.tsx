@@ -60,12 +60,12 @@ export default function LoginPage() {
   }, [isAuthenticated]);
 
   function login(data: LoginResponse) {
-    console.log(`Функция логина${data}`);
     if(setIsAuthenticated && setRefreshToken && setAccessToken){
       setIsAuthenticated(true);
       setRefreshToken(data.refresh);
       setAccessToken(data.access);
     }
+    
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -78,7 +78,7 @@ export default function LoginPage() {
     const loginData = await loginRequest(dataToSubmit);
     console.log(loginData);
     if (loginData?.status === 200) {
-      login(loginData);
+      login(loginData.data);
     }
   }
   
