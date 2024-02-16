@@ -70,12 +70,15 @@ export default function ReadPage({
   async function getPage() {
     try {
       const res = await axios.get(
-        `${process.env.API_ROUTE}/content/books/${params.slug}/view_page/${params.page}  `
+        `${process.env.API_ROUTE}/content/books/${params.slug}/view_page/${params.page}`
       );
       if (res.status === 200) {
         setPageData(res.data);
+        let newUrl = res.data.audio.slice(7, -1);
+        console.log(newUrl);
         console.log("pagedata", res.data);
-        setAudio(`http://217.151.230.35:999${res.data.audio}`);
+        setAudio(`http://217.151.230.35:999/${newUrl}3`);
+        console.log("http://217.151.230.35:999/${newUrl}3");
         setPageExist(true);
       }
     } catch (error) {
