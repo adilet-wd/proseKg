@@ -1,5 +1,8 @@
 @import "../../../styles/color-variables.scss";
 @import "../../../styles/breakpoint.scss";
+.details-container {
+  min-height: 80vh;
+}
 .detailsBlock {
   margin-top: 60px;
   display: flex;
@@ -83,14 +86,25 @@
   .detailsBlock {
     flex-direction: column;
     &_second {
-      font-size: 25px;
+      font-size: 23px;
+      .detailsBlock_second-short {
+        font-size: 20px;
+      }
       width: 100%;
+      .detailsBlock-information {
+        .detailsBlock-information__column1 {
+          width: 40%;
+        }
+        .detailsBlock-information__column2 {
+          width: 60%;
+        }
+      }
       &-opt {
         width: 100%;
       }
     }
     &_first {
-      margin-bottom: 4rem;
+      margin-bottom: 0;
       &-img {
         max-width: calc(100vw - 20px);
         width: 100%;
@@ -129,7 +143,7 @@
 @media screen and (max-width: 320px) {
   .detailsBlock {
     &_first-img {
-      width: 80vw;
+      width: 100vw;
       height: auto;
     }
   }

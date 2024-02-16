@@ -71,7 +71,7 @@ export default function Book({ params }: { params: { slug: string } }) {
   if(bookExist && windowWidth > 0) {
     return (
       <>
-        <Container>
+        <Container className="details-container">
           <h1>Китепкана</h1>
           <div className="detailsBlock">
             <div className="detailsBlock_first">
