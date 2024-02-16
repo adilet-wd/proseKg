@@ -75,7 +75,27 @@
       }
     }
   }
+  &-pagination {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $colorWhite;
+      font-weight: 800;
+      width: 40px;
+      height: 40px;
+      background-color: $colorOrange;
+      border-radius: 5px;
+    }
+  }
 }
+
 .readPage-loader {
   font-size: 16px;
   color: #333;

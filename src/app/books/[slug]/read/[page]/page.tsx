@@ -40,7 +40,7 @@ export default function ReadPage({ params }: { params: { page: number, slug: str
   const [audio, setAudio] = useState('');
   const [ pageData, setPageData] = useState<BookPage>();
   const [ pageExist, setPageExist] = useState<boolean>();
-  const [ previosPageExist, setPreviosPageExist] = useState<boolean>();
+  const [ previousPageExist, setPreviousPageExist] = useState<boolean>();
   const [ nextPageExist, setNextPageExist] = useState<boolean>();
 
   useEffect(() => {
@@ -83,21 +83,19 @@ export default function ReadPage({ params }: { params: { page: number, slug: str
     }
   }
 
-  // Получение следующей страницы
-  async function getNextPage() {
+  // Получение предыдущей страницы
+  async function getPreviousPage() {
     try {
       const res = await axios.get(
-        `${process.env.API_ROUTE}/content/books/${params.slug}/view_page/${params.page}  `
+        `${process.env.API_ROUTE}/content/books/${params.slug}/view_page/${params.page-1}  `
       );
       if(res.status === 200) { 
-        setPageData(res.data);
-        setAudio(`http://217.151.230.35:999${res.data.audio}`)
-        setPageExist(true);
+        setPreviousPageExist(true);
       }
     } catch (error) {
+      setPreviousPageExist(false);
       if ((error as any)?.response?.status === 404) {
         console.log((error as any).response.data);
-        setPageExist(false);
       } else if ((error as any)?.response?.status === 400) {
         console.log((error as any).response.data);
       } else {
@@ -107,20 +105,18 @@ export default function ReadPage({ params }: { params: { page: number, slug: str
   }
 
   // Получение следующей страницы
-  async function getPreviousPage() {
+  async function getNextPage() {
     try {
       const res = await axios.get(
-        `${process.env.API_ROUTE}/content/books/${params.slug}/view_page/${params.page}  `
+        `${process.env.API_ROUTE}/content/books/${params.slug}/view_page/${params.page+1}  `
       );
       if(res.status === 200) { 
-        setPageData(res.data);
-        setAudio(`http://217.151.230.35:999${res.data.audio}`)
-        setPageExist(true);
+        setNextPageExist(true);
       }
     } catch (error) {
+      setNextPageExist(false);
       if ((error as any)?.response?.status === 404) {
         console.log((error as any).response.data);
-        setPageExist(false);
       } else if ((error as any)?.response?.status === 400) {
         console.log((error as any).response.data);
       } else {
@@ -169,6 +165,11 @@ export default function ReadPage({ params }: { params: { page: number, slug: str
               </audio>
             </> : null}
           </div>
+        </div>
+        <div className='readPage-pagination'>
+          {previousPageExist ? <Link href={`/books/${params.slug}/read/${params.page-1}`}><div className='readPage-pagination__button'>{params.page-1}</div></Link> : null}
+          {pageExist ? <Link href={`/books/${params.slug}/read/${params.page}`}><div className='readPage-pagination__button'>{params.page}</div></Link> : null}
+          {nextPageExist ? <Link href={`/books/${params.slug}/read/${params.page+1}`}><div className='readPage-pagination__button'>{params.page-1}</div></Link> : null}
         </div>
       </Container>
     )
