@@ -31,11 +31,17 @@
       .detailsBlock-information__column1 {
         color: $colorTextGray;
         width: 30%;
+        @media screen and (max-width: $media-width-md) {
+          width: 40%;
+        }
       }
       .detailsBlock-information__column2 {
         color: $colorTextBlue;
         font-weight: 600;
         width: 70%;
+        @media screen and (max-width: $media-width-md) {
+          width: 60%;
+        }
       }
     }
     &-short {

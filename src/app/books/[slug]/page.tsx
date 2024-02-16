@@ -9,6 +9,7 @@ import bookmarkNew from "../../../assets/icons/bookmark-regular.svg";
 import bookmarkNewOrange from "../../../assets/icons/bookmark-regularOrange.svg";
 import Link from "next/link";
 import { AuthContext } from "@/app/auth/authContext";
+import { useRouter } from "next/navigation";
 
 interface Book {
   pic: string;
@@ -37,11 +38,12 @@ export default function Book({ params }: { params: { slug: string } }) {
   const [bookmarkIcon, setBookmarkIcon] = useState(bookmarkNew);
   const authContext = useContext(AuthContext);
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
-  const { refreshToken, setRefreshToken } = authContext || {};
-  const { accessToken, setAccessToken } = authContext || {};
+  const [ pageExist, setPageExist] = useState<boolean>();
+  const router = useRouter();
 
   useEffect(() => {
     getBook();
+    getPage();
   }, []);
 
   useEffect(() => {
@@ -55,6 +57,28 @@ export default function Book({ params }: { params: { slug: string } }) {
         window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+   // Получение страницы
+  async function getPage() {
+    try {
+      const res = await axios.get(
+        `${process.env.API_ROUTE}/content/books/${params.slug}/view_page/1/`
+      );
+      if(res.status === 200) { 
+        setPageExist(true);
+      }
+      console.log(res.data);
+    } catch (error) {
+      if ((error as any)?.response?.status === 404) {
+        console.log((error as any).response.data);
+        setPageExist(false);
+      } else if ((error as any)?.response?.status === 400) {
+        console.log((error as any).response.data);
+      } else {
+        console.log(`Ошибка`, error);
+      }
+    }
+  }
 
   async function getBook() {
     try {
@@ -81,6 +105,16 @@ export default function Book({ params }: { params: { slug: string } }) {
     setTimeout(() => {
       setBookmarkIcon(bookmarkNew);
     }, 300);
+  }
+  
+  async function handleRedirect(elem: any) {
+    elem.preventDefault();
+    if(pageExist) {
+      router.push(`/books/${params.slug}/read/1`); 
+    } else {
+      alert("Бул китептин тексти табылган жок")
+    }
+    
   }
 
   if(bookExist && windowWidth > 0) {
@@ -114,7 +148,7 @@ export default function Book({ params }: { params: { slug: string } }) {
                 </tbody>
               </table>
               <div className="detailsBlock_second-opt">
-                <button className="detailsBlock_second-btn">Окуу</button>
+                <button className="detailsBlock_second-btn" onClick={handleRedirect}>Окуу</button>
                 {isAuthenticated ? <Image src={bookmarkIcon} className={"detailsBlock_second-image"} onClick={addToFavorite} alt="error" width={40} height={40}/>: null}
               </div>
               <div className="detailsBlock_second-short">{book?.short}</div>
