@@ -47,7 +47,9 @@ export default function Footer() {
               <br />
               kanatbekovich36@gmail.com
               <div className="footer_block-soc">
-                <Image src={tgicon} alt="error" />
+                <a href="https://t.me/proses_kg_bot">
+                  <Image src={tgicon} alt="error" />
+                </a>
                 <Image src={vkicon} alt="error" />
                 <Image src={inicon} alt="error" />
               </div>
