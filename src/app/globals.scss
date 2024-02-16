@@ -4,6 +4,7 @@
 @import "../app/library/page.module.scss";
 @import "../app/books/[slug]/page.module.scss";
 @import "../app/myProfile/page.module.scss";
+@import "../app/textToAudio/page.module.scss";
 @import "../components/header/header.module.scss";
 @import "../components/loadingScreens/loadingScreen.module.scss";
 @import "../styles/color-variables.scss";
@@ -24,7 +25,9 @@
   :root {
   }
 }
-
+h1 {
+  font-weight: 600;
+}
 * {
   box-sizing: border-box;
   padding: 0;

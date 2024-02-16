@@ -34,6 +34,9 @@ export default function HeaderDesktop() {
               <Link href="/" className="nav-link">
                 Башкы бет
               </Link>
+              <Link href="/textToAudio" className="nav-link">
+                Аудио
+              </Link>
               <Link href="/library" className="nav-link">
                 Китепкана
               </Link>

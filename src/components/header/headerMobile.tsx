@@ -62,6 +62,9 @@ export default function HeaderMobile() {
                   <Link onClick={closeCanvas} href="/" className="nav-link">
                     Башкы бет
                   </Link>
+                  <Link href="/textToAudio" className="nav-link">
+                    Аудио
+                  </Link>
                   <Link
                     onClick={closeCanvas}
                     href="/library"
