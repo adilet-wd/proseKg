@@ -8,6 +8,8 @@ import bookmarkNewOrange from "../../assets/icons/bookmark-regularOrange.svg";
 import bookmarkfill from "../../assets/icons/Bookmark_fill.svg";
 import Link from "next/link";
 import { AuthContext } from "@/app/auth/authContext";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface Book {
   pic: string;
@@ -38,15 +40,58 @@ interface Genre {
 export default function Card({ book }: { book: Book }) {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, setIsAuthenticated } = authContext || {};
-  const [bookmarkIcon, setBookmarkIcon] = useState(bookmarkNew);
-
   const { refreshToken, setRefreshToken } = authContext || {};
   const { accessToken, setAccessToken } = authContext || {};
-  
+  const router = useRouter();
+  const [bookmarkIcon, setBookmarkIcon] = useState(bookmarkNew);
+
+
+  async function logoutFromClient() {
+    if(setAccessToken && setRefreshToken && setIsAuthenticated){
+      setAccessToken('');
+      setRefreshToken('');
+      setIsAuthenticated(false);
+    }
+  }
+
+  async function doBookmark() {
+    try {
+      const newAccessToken = await axios.post(
+        `${process.env.API_ROUTE}/regauth/refresh-token/`,
+        {
+          refresh: refreshToken,
+        }
+      );
+      if (setAccessToken) {
+        setAccessToken(newAccessToken.data.access);
+        const res = await axios.post(`${process.env.API_ROUTE}/content/books/${book.link}/create_favorite/`,{}, {
+          headers: {
+            Authorization: `Bearer ${newAccessToken.data.access}`
+          }
+        });
+        if (res.status === 201) {
+          alert("Бул китеп сиздин суйуктуу китептериниздин тизмесине кошулду");
+        }
+      }
+    } catch (error) {
+      if ((error as any)?.response?.status === 400) {
+        alert("Бул китеп сиздин суйуктуу китептериниздин тизмесинде бар");
+      }
+      // Если токен просрочился, то возвращает на главную и выходит из сайта
+      if ((error as any)?.response?.status === 401) {
+        logoutFromClient();
+        router.push('/');
+      } else {
+        // console.log(`Ошибка`, error);
+      }
+    }
+  }
+
   async function addToFavorite() {
     setBookmarkIcon(bookmarkNewOrange);
     setTimeout(() => {
       setBookmarkIcon(bookmarkNew);
+      doBookmark();
     }, 300);
   }
 

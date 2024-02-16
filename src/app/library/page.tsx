@@ -95,13 +95,23 @@ export default function Library() {
 
   if(windowWidth !== 0 && books.length > 0 && genres.length > 0) {
     return (
+      <>
       <Container>
-        <h1>Китепкана</h1>
-        <h2>Книги</h2>
-        <CardList books={books}></CardList>
-        <h2>Жанры</h2>
-        <ul>
-          {genres.length != 0 ? (
+        <h1 style={{ marginBottom: "30px" }}>Китепкана</h1>
+      </Container>
+        <Container>
+          <div style={{ marginBottom: "50px" }}>
+            <h2 style={{ marginBottom: "20px" }}>Жаны китептер:</h2>
+            <CardList books={books}></CardList>
+          </div>
+        </Container>
+        <Container>
+          <div style={{ marginBottom: "50px" }}>
+            <h2 style={{ marginBottom: "20px" }}>Жанры:</h2>
+            <CardList books={books}></CardList>
+          </div>
+        </Container>
+          {/* {genres.length != 0 ? (
             genres.map((genre, index) => {
               return (
                 <li key={index}>
@@ -111,9 +121,9 @@ export default function Library() {
             })
           ) : (
             <li>Нет книг</li>
-          )}
-        </ul>
-      </Container>
+          )} */}
+        </>
+      
     );
   }
 

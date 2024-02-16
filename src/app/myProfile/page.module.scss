@@ -157,3 +157,30 @@
     min-height: 80vh;
   }
 }
+.myProfile-favorites__books {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.myProfile-favorites__book {
+  padding: 5px;
+}
+
+.myProfile-favorites__book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.myProfile-favorites__book-info-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: $colorTextBlue;
+}
+
+.myProfile-favorites__empty {
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+}

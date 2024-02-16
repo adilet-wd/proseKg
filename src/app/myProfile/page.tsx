@@ -134,7 +134,7 @@ export default function MyProfile() {
       );
       if (setAccessToken) {
         setAccessToken(newAccessToken.data.access);
-        const res = await axios.get(`${process.env.API_ROUTE}/content/my_favorites/`, {
+        const res = await axios.get(`${process.env.API_ROUTE}/content/books//my_favorites//`, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -212,6 +212,7 @@ export default function MyProfile() {
   useEffect(() => {
     if(windowWidth > 0 && refreshToken) {
       getProfile();
+      getFavorites();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowWidth, refreshToken, router]);
@@ -274,9 +275,7 @@ export default function MyProfile() {
                         return (
                           <div key={index} className={"myProfile-favorites__book"}>
                             <div className={"myProfile-favorites__book-info"}>
-                              <div className={"myProfile-favorites__book-info-title"}><Link href={`/books/${favorite.link}`}>{favorite?.name}</Link></div>
-                              <div className={"myProfile-favorites__book-info-author"}>{favorite.author.fullname}</div>
-                              <div className={"myProfile-favorites__book-info-short"}>{favorite.short}</div>
+                              <div className={"myProfile-favorites__book-info-title"}><Link href={`/books/${favorite.link}`}>{favorite?.name} (автор: {favorite.author.fullname})</Link></div>
                             </div>
                           </div>
                         )

@@ -3,6 +3,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  .firstBlock_title {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
   &_img {
     width: 40vmax;
   }
