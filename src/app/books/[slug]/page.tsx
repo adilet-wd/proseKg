@@ -1,11 +1,14 @@
 "use client";
 import LoadingScreen from "@/components/loadingScreens/loadingScreen";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Container } from "react-bootstrap";
 import Image from "next/image";
-import bookmark from "../../../assets/icons/Bookmark.svg";
+// import bookmark from "../../../assets/icons/Bookmark.svg";
+import bookmarkNew from "../../../assets/icons/bookmark-regular.svg";
+import bookmarkNewOrange from "../../../assets/icons/bookmark-regularOrange.svg";
 import Link from "next/link";
+import { AuthContext } from "@/app/auth/authContext";
 
 interface Book {
   pic: string;
@@ -31,6 +34,11 @@ export default function Book({ params }: { params: { slug: string } }) {
   const [windowWidth, setWindowWidth] = useState(0);
   const [book, setBook] = useState<Book>();
   const [bookExist, setBookExist] = useState<boolean>();
+  const [bookmarkIcon, setBookmarkIcon] = useState(bookmarkNew);
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated } = authContext || {};
+  const { refreshToken, setRefreshToken } = authContext || {};
+  const { accessToken, setAccessToken } = authContext || {};
 
   useEffect(() => {
     getBook();
@@ -68,6 +76,13 @@ export default function Book({ params }: { params: { slug: string } }) {
     }
   }
 
+  async function addToFavorite() {
+    setBookmarkIcon(bookmarkNewOrange);
+    setTimeout(() => {
+      setBookmarkIcon(bookmarkNew);
+    }, 300);
+  }
+
   if(bookExist && windowWidth > 0) {
     return (
       <>
@@ -100,7 +115,7 @@ export default function Book({ params }: { params: { slug: string } }) {
               </table>
               <div className="detailsBlock_second-opt">
                 <button className="detailsBlock_second-btn">Окуу</button>
-                <Image src={bookmark} alt="error" />
+                {isAuthenticated ? <Image src={bookmarkIcon} className={"detailsBlock_second-image"} onClick={addToFavorite} alt="error" width={40} height={40}/>: null}
               </div>
               <div className="detailsBlock_second-short">{book?.short}</div>
             </div>

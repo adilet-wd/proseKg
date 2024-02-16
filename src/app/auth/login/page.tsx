@@ -174,7 +174,7 @@ export default function LoginPage() {
                 </Link>
               </div> */}
               <Button className="login__button" type="submit">
-                Войти
+                Кирүү
               </Button>
               <div className="login-options__haveaccount">
                 Аккаунтуңуз жок болсо&nbsp;<Link className="login-options__haveaccount2" href="/auth/register"> Катталыңыз</Link>

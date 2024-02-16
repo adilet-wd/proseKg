@@ -4,6 +4,7 @@
   position: absolute;
   left: 0;
   background-color: #fef7e8;
+  z-index: 1000;
   &_block {
     display: flex;
     flex-direction: row;

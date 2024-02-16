@@ -97,19 +97,13 @@ export default function Home() {
         </Container>
         <Container>
           <div style={{ marginBottom: "50px" }}>
-            <h2 style={{ marginBottom: "20px" }}>Популярные:</h2>
+            <h2 style={{ marginBottom: "20px" }}>Жаны китептер:</h2>
             <CardList books={books}></CardList>
           </div>
         </Container>
         <Container>
           <div style={{ marginBottom: "50px" }}>
-            <h2 style={{ marginBottom: "20px" }}>Аниме:</h2>
-            <CardList books={books}></CardList>
-          </div>
-        </Container>
-        <Container>
-          <div style={{ marginBottom: "50px" }}>
-            <h2 style={{ marginBottom: "20px" }}>Художественная литература:</h2>
+            <h2 style={{ marginBottom: "20px" }}>Көркөм адабият:</h2>
             <CardList books={books}></CardList>
           </div>
         </Container>

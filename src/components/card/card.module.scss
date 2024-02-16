@@ -79,7 +79,8 @@
   }
   &_info-btn {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 10px;
     align-items: center;
     color: white;
     background-color: #ff7f2c;
@@ -109,6 +110,7 @@
     height: auto;
   }
   &_info-bookmark {
+    cursor: pointer;
     width: 2rem;
   }
   &_author {

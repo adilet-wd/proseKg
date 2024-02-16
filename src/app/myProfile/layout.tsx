@@ -1,3 +1,4 @@
+import Footer from '@/components/footer/footer';
 import Header from '@/components/header/header';
 import React, { ReactNode } from 'react';
 
@@ -9,13 +10,11 @@ const Layout = ({ children }: LayoutProps) => {
     return (
         <>
             <div className="nav-placeholder"></div>
-           <Header></Header>
+            <Header></Header>
             <main>
                 {children}
             </main>
-            <footer>
-                {/* Your footer content */}
-            </footer>
+            <Footer></Footer>
         </>
     );
 };
